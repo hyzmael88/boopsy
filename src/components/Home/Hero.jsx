@@ -8,7 +8,7 @@ const Hero = () => {
             <h1 className="text-5xl md:text-7xl font-extrabold animate-fade-in uppercase font-anton">Unleash Your Style</h1>
             <p className="mt-4 text-lg md:text-xl max-w-md mx-auto">Redefiniendo lo contemporáneo, 
             imponiendo tendencias</p>
-            <Link href="#" className="inline-block mt-8 px-8 py-3 bg-black text-white rounded-[28px] text-lg font-bold hover:bg-gray-200 transition">
+            <Link href="#" className="inline-block mt-8 px-8 py-3 bg-black text-white rounded-[28px] text-lg font-bold hover:bg-gray-200 transition font-anton uppercase">
               Ver Tienda
             </Link>
         </div>
