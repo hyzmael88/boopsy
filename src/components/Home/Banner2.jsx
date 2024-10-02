@@ -3,8 +3,8 @@ import React from "react";
 
 function Banner2() {
   return (
-    <div className="w-full flex flex-col xl:flex-row xl:h-[635px]">
-      <div className="w-full xl:w-1/2 bg-black text-white flex flex-col items-center justify-center p-4 xl:p-0 relative">
+    <div className="w-full hidden lg:flex flex-col lg:flex-row xl:h-[635px]">
+      <div className="w-full xl:w-1/2   text-white flex flex-col items-center justify-center   relative">
         <Image
           width={1920}
           height={635}
@@ -26,7 +26,7 @@ function Banner2() {
           </button>
         </div>
       </div>
-      <div className="w-full xl:w-1/2 bg-black text-white flex flex-col items-center justify-center p-4 xl:p-0 relative">
+      <div className="w-full xl:w-1/2 bg-black text-white flex flex-col items-center justify-center  relative">
         <Image
           width={1920}
           height={635}

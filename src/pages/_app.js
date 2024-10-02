@@ -1,7 +1,7 @@
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import SocialMedia from "@/components/SocialMedia";
-import Worldwide from "@/components/Worldwide";
+import Worldwide from "@/components/Envio";
 import { Anton } from '@next/font/google';
 
 import "@/styles/globals.css";
