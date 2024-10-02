@@ -13,7 +13,7 @@ function Banner2() {
           className="object-cover w-full h-full"
         />
         <div className="w-full flex flex-col  justify-center items-center absolute z-10">
-          <h1 className="text-[30px] sm:text-[40px] lg:text-[50px] xl:text-[80px] leading-[40px] sm:leading-[50px] xl:leading-[81px] text-center whitespace-pre-line ">
+          <h1 className="text-[30px] sm:text-[40px] lg:text-[50px] xl:text-[80px] leading-[40px] sm:leading-[50px] xl:leading-[81px] text-center whitespace-pre-line font-anton pt-32">
             {`ENVÍOS A 
             TODO MÉXICO`}
           </h1>
@@ -34,8 +34,19 @@ function Banner2() {
           alt="banner"
           className="object-cover w-full h-full"
         />
-        <div className="w-full flex flex-col  justify-center items-center absolute z-10">
-          <h1 className="text-[30px] sm:text-[40px] lg:text-[50px] xl:text-[80px] leading-[40px] sm:leading-[50px] xl:leading-[81px] text-center whitespace-pre-line  ">
+        <div className="w-full h-full  absolute z-10 ">
+
+        <Image
+        width={1920}
+        height={635}
+         src="/assets/home/hashtaggreen.png"
+         alt="banner"
+         className="object-contain h-full w-full "
+         />
+         </div>
+
+        <div className="w-full flex flex-col  justify-center items-center absolute z-20">
+          <h1 className="text-[30px] sm:text-[40px] lg:text-[50px] xl:text-[80px] leading-[40px] sm:leading-[50px] xl:leading-[81px] text-center whitespace-pre-line font-anton  ">
             {`
                 SOMOS UNA
                 MARCA 100%
