@@ -1,5 +1,6 @@
 import Footer from "@/components/Footer";
 import Banner from "@/components/Home/Banner";
+import Banner2 from "@/components/Home/Banner2";
 import Categories from "@/components/Home/Categories";
 import Header from "@/components/Home/Header";
 import Hero from "@/components/Home/Hero";
@@ -18,6 +19,7 @@ export default function Home() {
       <Premium/>
       <Instagram />
       <Subscribe />
+      <Banner2/>
     </div>
   );
 }
