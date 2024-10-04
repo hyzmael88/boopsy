@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import React, { useState } from 'react';
 import { FaSearch, FaShoppingCart, FaBars, FaTimes, FaFacebook, FaInstagram, FaTiktok } from 'react-icons/fa';
@@ -16,6 +17,11 @@ function Navbar() {
         <FaBars className="text-xl cursor-pointer" onClick={toggleMenu} />
       </div>
 
+      {/* Logo */}  
+      <div>
+        <Image src="/assets/logo.png" width={150} height={50} alt="Logo" />
+      </div>
+
       {/* Enlaces del centro para versión de escritorio */}
       <div className='hidden md:flex gap-x-4 font-anton uppercase'>
         <Link href="/">Inicio</Link>
@@ -26,8 +32,8 @@ function Navbar() {
       {/* Íconos a la derecha */}
       <div className='flex space-x-4'>
         <FaShoppingCart className='cursor-pointer' />
-        <FaSearch className='cursor-pointer' />
-      </div>
+{/*         <FaSearch className='cursor-pointer' />
+ */}      </div>
 
       {/* Menú móvil */}
       <div className={`fixed top-0 left-0 w-full h-full bg-white z-50 p-6 transition-transform transform ${menuOpen ? 'translate-x-0' : '-translate-x-full'}`}>

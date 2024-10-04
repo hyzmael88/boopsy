@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export default function Producto({ producto }) {
   return (
-    <div className="p-4">
+    <div className="p-4 md:p-10">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {/* Imágenes del producto */}
         <div>
