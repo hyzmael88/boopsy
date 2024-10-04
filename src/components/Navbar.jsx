@@ -19,8 +19,8 @@ function Navbar() {
       {/* Enlaces del centro para versión de escritorio */}
       <div className='hidden md:flex gap-x-4 font-anton uppercase'>
         <Link href="/">Inicio</Link>
-        <Link href="/about">Acerca De</Link>
-        <Link href="/shop">Tienda</Link>
+        <Link href="/About">Acerca De</Link>
+        <Link href="/Shop">Tienda</Link>
       </div>
 
       {/* Íconos a la derecha */}
@@ -39,8 +39,8 @@ function Navbar() {
         {/* Enlaces del menú móvil */}
         <div className="mt-10 flex flex-col space-y-6 text-[26px]">
           <Link href="/" onClick={toggleMenu}>Inicio</Link>
-          <Link href="/about" onClick={toggleMenu}>Acerca De</Link>
-          <Link href="/shop" onClick={toggleMenu}>Tienda</Link>
+          <Link href="/About" onClick={toggleMenu}>Acerca De</Link>
+          <Link href="/Shop" onClick={toggleMenu}>Tienda</Link>
           <div className='w-[90%] border-t-[1px] border-black h-[10px]'/>
           
           {/* Íconos de redes sociales */}
