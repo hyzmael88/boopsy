@@ -19,6 +19,13 @@ export default {
         }
         ,
         {
+            name: 'image',
+            title: 'Image',
+            type: 'image',
+            description: 'Image of the fit style.',
+        }
+        ,
+        {
             name: 'guia',
             title: 'Guia de Medidas',
             type: 'image',
