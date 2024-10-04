@@ -50,7 +50,8 @@ export default {
           }
         ]
       }],
-      description: 'Listado de tallas disponibles y el inventario correspondiente por cada talla.'
+      description: 'Listado de tallas disponibles y el inventario correspondiente por cada talla.',
+      validation: Rule => Rule.required().error('Debe agregar al menos una talla')
     },
     {
       name: 'precio',
@@ -96,6 +97,7 @@ export default {
       type: 'reference',
       to: [{ type: 'color' }],
       description: 'Colores del producto.',
+      validation: Rule => Rule.required().error('Debe agregar al menos un color')
     },
     {
       name: 'categoria',
@@ -124,19 +126,22 @@ export default {
       name: 'descripcion',
       title: 'Descripción',
       type: 'text',
-      description: 'Descripción detallada del producto.'
+      description: 'Descripción detallada del producto.',
+      validation: Rule => Rule.required().error('La descripción del producto es obligatoria.')
     },
     {
       name: 'materiales',
       title: 'Materiales y Cuidados',
       type: 'text',
-      description: 'Detalles sobre los materiales y las instrucciones de cuidado del producto.'
+      description: 'Detalles sobre los materiales y las instrucciones de cuidado del producto.',
+      validation: Rule => Rule.required().error('Los materiales y cuidados son obligatorios.')
     },
     {
       name: 'envioDevoluciones',
       title: 'Envío y Devoluciones',
       type: 'text',
-      description: 'Políticas sobre el envío y las devoluciones.'
+      description: 'Políticas sobre el envío y las devoluciones.',
+      validation: Rule => Rule.required().error('Las políticas de envío y devoluciones son obligatorias.')
     },
     
    
