@@ -1,8 +1,14 @@
 import React from 'react'
+import Filtros from './Filtros'
+import Productos from './Productos'
 
 function Layout() {
   return (
-    <div>Layout</div>
+    <div className='w-full flex '>
+      <Filtros/>
+      <Productos
+      />
+    </div>
   )
 }
 

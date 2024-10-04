@@ -30,6 +30,29 @@ export default {
       validation: Rule => Rule.required().error('El fit es obligatorio.')
     },
     {
+      name: 'tallas',
+      title: 'Tallas Disponibles',
+      type: 'array',
+      of: [{ type: 'object', 
+        fields: [
+          {
+            name: 'talla',
+            title: 'Talla',
+            type: 'string',
+            description: 'Especificar la talla.',
+            validation: Rule => Rule.required().error('La talla es obligatoria.')
+          },
+          {
+            name: 'inventario',
+            title: 'Inventario para esta Talla',
+            type: 'number',
+            validation: Rule => Rule.required().min(0).error('El inventario debe ser un número positivo.')
+          }
+        ]
+      }],
+      description: 'Listado de tallas disponibles y el inventario correspondiente por cada talla.'
+    },
+    {
       name: 'precio',
       title: 'Precio',
       type: 'number',
@@ -68,8 +91,8 @@ export default {
       hidden: ({ parent }) => !parent?.enOferta
     },
     {
-      name: 'colores',
-      title: 'Colores',
+      name: 'color',
+      title: 'Color',
       type: 'reference',
       to: [{ type: 'color' }],
       description: 'Colores del producto.',
