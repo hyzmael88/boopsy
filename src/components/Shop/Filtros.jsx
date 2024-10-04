@@ -14,7 +14,7 @@ function Filtros({ productos, setFiltros }) {
       ...new Set(productos.flatMap((p) => p.tallas.map((t) => t.talla))),
     ]; // Get unique tallas
     const colores = [
-      ...new Set(productos.flatMap((p) => p.colores)),
+      ...new Set(productos.flatMap((p) => p.color)),
     ]; // Get unique colores
 
     setFitOptions(fits);
@@ -42,7 +42,7 @@ function Filtros({ productos, setFiltros }) {
   };
 
   return (
-    <div className="w-1/4 p-4">
+    <div className="w-1/5 p-4 font-gabarito">
       {/* Filtro de Fit */}
       <div className="mb-4">
         <h3 className="uppercase font-bold mb-2">Fit</h3>
@@ -66,7 +66,7 @@ function Filtros({ productos, setFiltros }) {
         {tallaOptions.map((tallaOption) => (
           <label key={tallaOption} className="block mb-2">
             <input
-              type="radio"
+              type="checkbox"
               value={tallaOption}
               name="talla"
               onChange={handleTallaChange}
@@ -79,11 +79,13 @@ function Filtros({ productos, setFiltros }) {
       {/* Filtro de Color */}
       <div className="mb-4">
         <h3 className="uppercase font-bold mb-2">Color</h3>
+        {console.log(colorOptions)}
         {colorOptions.map((colorOption) => (
           <label key={colorOption} className="block mb-2">
             <input
-              type="radio"
-              value={colorOption}
+              type="checkbox"
+              value={colorOption
+              }
               name="color"
               onChange={handleColorChange}
             />

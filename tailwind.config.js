@@ -13,6 +13,7 @@ module.exports = {
       },
       fontFamily: {
         anton: ['Anton', 'sans-serif'],
+        gabarito: ['Gabarito', 'sans-serif'],
       },
     },
   },

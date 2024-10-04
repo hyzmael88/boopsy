@@ -21,8 +21,8 @@ function Shop() {
         enOferta,
         precioDescuento,
         porcentajeDescuento,
-        "fit": fit->nombre, // Acceder al nombre del fit referenciado
-        "color": color->nombreColor, // Acceder al nombre del color referenciado
+        "fit": fit->name, // Acceder al nombre del fit referenciado
+        "color": color->name, // Acceder al nombre del color referenciado
         tallas[]{
           talla,
           inventario
