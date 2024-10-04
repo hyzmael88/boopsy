@@ -22,10 +22,12 @@ export default {
       validation: Rule => Rule.required().error('El slug es obligatorio.')
     },
     {
-      name: 'ajuste',
-      title: 'Ajuste',
-      type: 'string',
-      validation: Rule => Rule.required().error('El tipo de ajuste es obligatorio.')
+      name: 'fit',
+      title: 'Fit',
+      type: 'reference',
+      to: [{ type: 'fit' }],
+      description: 'Fit del producto.',
+      validation: Rule => Rule.required().error('El fit es obligatorio.')
     },
     {
       name: 'precio',
@@ -68,66 +70,15 @@ export default {
     {
       name: 'colores',
       title: 'Colores',
-      type: 'array',
-      of: [
-        {
-          type: 'object',
-          fields: [
-            {
-              name: 'nombreColor',
-              title: 'Nombre del Color',
-              type: 'string',
-              validation: Rule => Rule.required().error('El nombre del color es obligatorio.')
-            },
-            {
-              name: 'codigoHex',
-              title: 'Código HEX',
-              type: 'string',
-              description: 'Ingrese el código hexadecimal del color (por ejemplo, #FFFFFF).',
-              validation: Rule => Rule.required().error('El código HEX del color es obligatorio.')
-            }
-          ]
-        }
-      ],
-      description: 'Lista de colores disponibles para este producto.',
-      validation: Rule => Rule.required().min(1).error('Debe especificar al menos un color.')
-    },
-    {
-      name: 'guiaTallas',
-      title: 'Guía de Tallas',
-      type: 'string',
-      description: 'Enlace a la guía de tallas o referencia a una tabla de tallas.'
-    },
-    {
-      name: 'inventario',
-      title: 'Inventario por Talla',
-      type: 'array',
-      of: [
-        {
-          type: 'object',
-          fields: [
-            {
-              name: 'talla',
-              title: 'Talla',
-              type: 'string',
-              validation: Rule => Rule.required().error('La talla es obligatoria.')
-            },
-            {
-              name: 'cantidad',
-              title: 'Cantidad en Inventario',
-              type: 'number',
-              validation: Rule => Rule.required().min(0).error('La cantidad en inventario debe ser un número positivo.')
-            }
-          ]
-        }
-      ],
-      description: 'Inventario disponible para cada talla de este producto.',
-      validation: Rule => Rule.required().min(1).error('Debe especificar al menos una talla con inventario.')
+      type: 'reference',
+      to: [{ type: 'color' }],
+      description: 'Colores del producto.',
     },
     {
       name: 'categoria',
       title: 'Categoría',
       type: 'reference',
+      
       to: [{ type: 'categoria' }],
       description: 'Categoría a la que pertenece el producto.',
       validation: Rule => Rule.required().error('Debe seleccionar una categoría.')
@@ -164,18 +115,8 @@ export default {
       type: 'text',
       description: 'Políticas sobre el envío y las devoluciones.'
     },
-    {
-      name: 'destacado',
-      title: 'Destacado',
-      type: 'boolean',
-      description: 'Marcar si el producto es destacado en la tienda.'
-    },
-    {
-      name: 'oferta',
-      title: 'En Oferta',
-      type: 'boolean',
-      description: 'Marcar si el producto está en oferta.'
-    },
+    
+   
     {
       name: 'imagenes',
       title: 'Imágenes del Producto',
@@ -185,8 +126,15 @@ export default {
         hotspot: true // Activar el hotspot para un mejor recorte de imagen
       },
       validation: Rule => Rule.required().min(1).error('Se requiere al menos una imagen del producto.')
-    }
+    },
+    {
+      name: 'destacado',
+      title: 'Destacado',
+      type: 'boolean',
+      description: 'Marcar si el producto es destacado en la tienda.'
+    },
   ],
+  
   preview: {
     select: {
       title: 'nombre',
