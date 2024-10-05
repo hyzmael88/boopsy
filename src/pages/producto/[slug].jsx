@@ -1,9 +1,18 @@
 import Otros from "@/components/Shop/Otros";
-import { client } from "@/sanity/lib/client";
+import { AppContext } from "@/context/AppContext";
 import Image from "next/image";
 import Link from "next/link";
+import { useContext } from "react";
+import { client } from "@/sanity/lib/client";
 
 export default function Producto({ producto }) {
+
+  const {addToCart} = useContext(AppContext);
+  const [size, setSize] = useState("");
+  const [qty, setQty] = useState(1);
+
+  
+
   return (
     <div className="p-4 md:p-10">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -87,6 +96,7 @@ export default function Producto({ producto }) {
           <button className="mt-4 bg-black text-white w-[256px] h-[50px] rounded-[28px] uppercase font-anton text-[30px] "
           onClick={() => {
             console.log("Agregar a bolsa");
+            addToCart(producto, size, qty);
           }
           }
           >

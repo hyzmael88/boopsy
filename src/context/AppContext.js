@@ -1,4 +1,4 @@
-import { client } from "../lib/client";
+import { client } from "@/sanity/lib/client";
 import React, { createContext, useEffect, useState } from 'react';
 
 export const AppContext = createContext();
@@ -7,9 +7,8 @@ export const AppProvider = ({ children }) => {
 
 
   const [subtotal, setSubtotal] = useState(0);
-  const [iva, setIva] = useState(0)
-/*   const [envio, setEnvio] = useState(500);
- */  const [cart, setCart] = useState([]);
+  const [envio, setEnvio] = useState(500);
+  const [cart, setCart] = useState([]);
   const [total, setTotal] = useState(0)
   const [isCartInitialized, setIsCartInitialized] = useState(false);
   const [ventas, setVentas] = useState([]);
@@ -41,16 +40,14 @@ export const AppProvider = ({ children }) => {
     setSubtotal(total);
 }, [cart]);
 
-useEffect(() => {
-  setIva((subtotal * 0.16));
-}, [subtotal]);
+
 
 useEffect(() => {
-  setTotal((subtotal+iva+envio));
-}, [subtotal,iva,envio]);
+  setTotal((subtotal+envio));
+}, [subtotal,envio]);
 
 const addToCart = (product, size, qty) => {
-  
+  console.lor('agregaste un producto al carrito', product, size, qty);
   setCart((currentCart) => {
     // Buscar el producto en el carrito
     const index = currentCart.findIndex(
@@ -209,13 +206,11 @@ const updateVenta = async (ref, updatedData) => {
     <AppContext.Provider value={{ 
       cart,
       subtotal,
-      iva,
       envio,
       total,
       ventas,
       setEnvio,
       setSubtotal,
-      setIva,
        addToCart,
         getCart,
          updateCartItem,

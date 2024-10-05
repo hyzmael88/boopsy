@@ -3,6 +3,7 @@ import Navbar from "@/components/Navbar";
 import SocialMedia from "@/components/SocialMedia";
 import Worldwide from "@/components/Envio";
 import { Anton } from '@next/font/google';
+import { AppProvider } from "@/context/AppContext";
 
 import "@/styles/globals.css";
 
@@ -14,6 +15,7 @@ const anton = Anton({
 
 export default function App({ Component, pageProps }) {
   return(
+    <AppProvider>
     <div className="anton.className">
     <Worldwide/>
     <SocialMedia/>
@@ -21,5 +23,6 @@ export default function App({ Component, pageProps }) {
      <Component {...pageProps} />
      <Footer />
     </div>
+    </AppProvider>
   )
 }
