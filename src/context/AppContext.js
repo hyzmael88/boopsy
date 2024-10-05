@@ -75,19 +75,30 @@ const addToCart = (product, size, qty) => {
   // Update
   const updateCartItem = (productId, size, qty) => {
     setCart((currentCart) => {
-      return currentCart.map((item) => 
-        item.product._id === productId 
-          ? {product: item.product, size, qty} 
-          : item
+      const index = currentCart.findIndex(
+        (item) => item.product._id === productId && item.size === size
       );
+
+      if (index !== -1) {
+        const newCart = [...currentCart];
+        newCart[index] = {
+          ...newCart[index],
+          qty: qty,
+        };
+        return newCart;
+      }
+
+      return currentCart;
     });
   };
 
    // Delete
-   const removeFromCart = (productId) => {
-    console.log("entre")
-    console.log(productId)
-    setCart((currentCart) => currentCart.filter((item) => item.product._id !== productId));
+   const removeFromCart = (productId, size) => {
+    setCart((currentCart) =>
+      currentCart.filter(
+        (item) => item.product._id !== productId || item.size !== size
+      )
+    );
   };
 
   // Delete

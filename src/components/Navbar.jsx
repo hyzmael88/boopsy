@@ -31,7 +31,9 @@ function Navbar() {
 
       {/* Íconos a la derecha */}
       <div className='flex space-x-4 z-10'>
+        <Link href="/Cart">
         <FaShoppingCart className='cursor-pointer' />
+        </Link>
         {/* <FaSearch className='cursor-pointer' /> */}
       </div>
 
