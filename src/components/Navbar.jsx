@@ -1,9 +1,24 @@
+import { AppContext } from '@/context/AppContext';
 import Image from 'next/image';
 import Link from 'next/link';
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { FaSearch, FaShoppingCart, FaBars, FaTimes, FaFacebook, FaInstagram, FaTiktok } from 'react-icons/fa';
+import { set } from 'sanity';
 
 function Navbar() {
+
+   const { cart ,getCart } = useContext(AppContext);
+
+   const [totalItems, setTotalItems] = useState(0);
+
+   useEffect(() => {
+      getCart(); 
+      setTotalItems(cart.reduce((acc, item) => acc + item.qty, 0));
+
+    }, [cart]);
+
+
+
   const [menuOpen, setMenuOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -32,7 +47,12 @@ function Navbar() {
       {/* Íconos a la derecha */}
       <div className='flex space-x-4 z-10'>
         <Link href="/Cart">
-        <FaShoppingCart className='cursor-pointer' />
+        <FaShoppingCart className="text-2xl" />
+              {totalItems > 0 && (
+                <span className="absolute top-0 right-0 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm">
+                  {totalItems}
+                </span>
+              )}
         </Link>
         {/* <FaSearch className='cursor-pointer' /> */}
       </div>
