@@ -28,7 +28,7 @@ export default function About() {
             alt="Estilo contemporáneo"
             width={500}
             height={500}
-            className="w-[395px] lg:w-full max-h-[222px] md:max-h-[549px] object-contain md:object-cover rounded-t-[35px] md:rounded-r-[0px] md:rounded-l-[79px]
+            className="w-[395px] lg:w-full max-h-[222px] md:max-h-[549px] object-cover rounded-t-[35px] md:rounded-r-[0px] md:rounded-l-[79px]
             
             "
           />
