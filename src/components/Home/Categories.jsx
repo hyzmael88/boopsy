@@ -1,21 +1,44 @@
+import { useEffect, useState } from "react";
+import { client } from '@/sanity/lib/client';
+import Image from "next/image";
+
+
 const Categories = () => {
-    const categories = [
-      { title: "Skinny Jeans", imageUrl: "/path-to-image1.jpg" },
-      { title: "Wide Leg Jeans", imageUrl: "/path-to-image2.jpg" },
-      { title: "Cropped Jeans", imageUrl: "/path-to-image3.jpg" },
-      { title: "Cargo Jeans", imageUrl: "/path-to-image4.jpg" },
-    ];
+   
+    const [categories, setCategories] = useState([])
+
+    useEffect(() => {
+      const fetchCategories = async () => {
+      const data = await client.fetch(`*[_type == "fit"]{
+        name,
+        image{
+          asset->{
+            url
+          }
+        }
+
+      }`);
+      setCategories(data);
+    }
+    fetchCategories();
+  }
+  , []);
+
+  console.log(categories)
+  console.log(categories[0]?.image?.asset?.url)
   
     return (
       <section className="py-12">
         <h2 className="text-[20px] lg:text-[60px] font-anton uppercase text-center  mb-8">Categorías</h2>
-        <div className="flex gap-6 px-4">
+        <div className="flex gap-6 px-4 ">
           {categories.map((category, index) => (
-            <div key={index} className="relative group overflow-hidden rounded-lg">
-              <img src={category.imageUrl} alt={category.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" />
-              <div className="absolute inset-0 bg-black bg-opacity-30 group-hover:bg-opacity-60 transition-all flex items-center justify-center text-white">
-                <span className="text-lg">{category.title}</span>
-              </div>
+            <div key={index} className="relative group overflow-hidden cursor-pointer ">
+              <Image 
+              width={500}
+              height={500}
+              src={category?.image?.asset?.url} alt={category.name} className="w-[274px] h-[274px] object-cover group-hover:scale-110 transition-transform duration-300" />
+              
+            <p className="text-center font-gabarito text-[20px] my-[25px] ">{category.name}</p>
             </div>
           ))}
         </div>

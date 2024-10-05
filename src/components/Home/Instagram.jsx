@@ -16,10 +16,10 @@ const Instagram = () => {
 
   return (
     <section className="py-12 overflow-hidden">
-      <h2 className="text-[20px] text-center font-anton uppercase ">Síguenos en Instagram</h2>
-      <p className='text-center text-[10px]'>Nuestros últimos posts</p>
+      <h2 className="text-[20px] lg:text-[60px] text-center font-anton uppercase ">Síguenos en Instagram</h2>
+      <p className='text-center text-[10px] lg:text-[20px] font-gabarito mb-4 lg:mb-8'>Nuestros últimos posts</p>
       
-      <div className="elfsight-app-45949c41-40d7-4fb9-aa78-7da74d0ba19d mt-8" data-elfsight-app-lazy></div>
+      <div className="elfsight-app-45949c41-40d7-4fb9-aa78-7da74d0ba19d " data-elfsight-app-lazy></div>
     </section>
   );
 };

@@ -11,29 +11,29 @@ function Navbar() {
   };
 
   return (
-    <div className='w-full h-[78px] flex justify-between items-center px-4 md:px-10'>
+    <div className='w-full h-[78px] flex justify-between items-center px-4 md:px-10 relative'>
       {/* Ícono del menú en versión móvil */}
       <div className="md:hidden">
         <FaBars className="text-xl cursor-pointer" onClick={toggleMenu} />
       </div>
 
       {/* Logo */}  
-      <div>
+      <div className='relative z-10'>
         <Image src="/assets/logo.png" width={150} height={50} alt="Logo" />
       </div>
 
       {/* Enlaces del centro para versión de escritorio */}
-      <div className='hidden md:flex gap-x-4 font-anton uppercase'>
+      <div className='hidden md:flex gap-x-6 font-anton uppercase absolute left-1/2 transform -translate-x-1/2'>
         <Link href="/">Inicio</Link>
         <Link href="/About">Acerca De</Link>
         <Link href="/Shop">Tienda</Link>
       </div>
 
       {/* Íconos a la derecha */}
-      <div className='flex space-x-4'>
+      <div className='flex space-x-4 z-10'>
         <FaShoppingCart className='cursor-pointer' />
-{/*         <FaSearch className='cursor-pointer' />
- */}      </div>
+        {/* <FaSearch className='cursor-pointer' /> */}
+      </div>
 
       {/* Menú móvil */}
       <div className={`fixed top-0 left-0 w-full h-full bg-white z-50 p-6 transition-transform transform ${menuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
@@ -48,7 +48,7 @@ function Navbar() {
           <Link href="/About" onClick={toggleMenu}>Acerca De</Link>
           <Link href="/Shop" onClick={toggleMenu}>Tienda</Link>
           <div className='w-[90%] border-t-[1px] border-black h-[10px]'/>
-          
+
           {/* Íconos de redes sociales */}
           <div className="flex space-x-6 mt-8">
             <FaFacebook className='text-2xl cursor-pointer' />
