@@ -47,17 +47,20 @@ useEffect(() => {
 }, [subtotal,envio]);
 
 const addToCart = (product, size, qty) => {
-  console.lor('agregaste un producto al carrito', product, size, qty);
+  console.log('agregaste un producto al carrito', product, size, qty);
   setCart((currentCart) => {
     // Buscar el producto en el carrito
     const index = currentCart.findIndex(
-      (item) => item.product._id === product._id
+      (item) => item.product._id === product._id && item.size === size
     );
 
     // Si el producto ya está en el carrito, incrementar su cantidad
     if (index !== -1) {
       const newCart = [...currentCart];
-      newCart[index].qty += qty;
+      newCart[index] = {
+        ...newCart[index],
+        qty: newCart[index].qty + qty,
+      };
       return newCart;
     }
 
