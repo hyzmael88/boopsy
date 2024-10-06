@@ -1,6 +1,7 @@
 import { AppContext } from '@/context/AppContext';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import React, { useContext, useEffect, useState } from 'react';
 import { FaSearch, FaShoppingCart, FaBars, FaTimes, FaFacebook, FaInstagram, FaTiktok } from 'react-icons/fa';
 import { set } from 'sanity';
@@ -8,6 +9,8 @@ import { set } from 'sanity';
 function Navbar() {
 
    const { cart ,getCart } = useContext(AppContext);
+
+   const router = useRouter();
 
    const [totalItems, setTotalItems] = useState(0);
 
@@ -45,11 +48,11 @@ function Navbar() {
       </div>
 
       {/* Íconos a la derecha */}
-      <div className='flex space-x-4 z-10'>
+      <div className='flex space-x-4 z-10 '>
         <Link href="/Cart">
         <FaShoppingCart className="text-2xl" />
               {totalItems > 0 && (
-                <span className="absolute top-5 right-7 bg-red-500 text-white rounded-full w-4 h-4 flex items-center justify-center text-[10px]">
+                <span className="absolute right-2 top-5 md:top-5 md:right-7 bg-red-500 text-white rounded-full w-4 h-4 flex items-center justify-center text-[10px]">
                   {totalItems}
                 </span>
               )}
@@ -58,17 +61,29 @@ function Navbar() {
       </div>
 
       {/* Menú móvil */}
-      <div className={`fixed top-0 left-0 w-full h-full bg-white z-50 p-6 transition-transform transform ${menuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+      <div className={`fixed top-0 left-0 w-full h-full pt-[100px] bg-white z-50 p-6 transition-transform transform ${menuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
         {/* Botón para cerrar el menú */}
-        <div className="flex justify-end">
-          <FaTimes className="text-2xl cursor-pointer" onClick={toggleMenu} />
+        <div className="flex justify-start">
+          <FaTimes className="text-[30px] cursor-pointer" onClick={toggleMenu} />
         </div>
 
+        
+      {/* Logo */}  
+      <div className='w-full flex justify-center mt-[63px]'>
+        <Image src="/assets/logo.png" width={278} height={44} alt="Logo" />
+      </div>
+
         {/* Enlaces del menú móvil */}
-        <div className="mt-10 flex flex-col space-y-6 text-[26px]">
-          <Link href="/" onClick={toggleMenu}>Inicio</Link>
-          <Link href="/About" onClick={toggleMenu}>Acerca De</Link>
-          <Link href="/Shop" onClick={toggleMenu}>Tienda</Link>
+        <div className="mt-10 flex flex-col space-y-[15px] text-[26px]">
+          <Link href="/" onClick={toggleMenu}
+          className={router.pathname === '/' ? 'font-bold' : ''}
+          >Inicio</Link>
+          <Link href="/About" onClick={toggleMenu}
+          className={router.pathname === '/About' ? 'font-bold' : ''}
+          >Acerca De</Link>
+          <Link href="/Shop" onClick={toggleMenu}
+          className={router.pathname === '/Shop' ? 'font-bold' : ''}
+          >Tienda</Link>
           <div className='w-[90%] border-t-[1px] border-black h-[10px]'/>
 
           {/* Íconos de redes sociales */}
@@ -79,7 +94,7 @@ function Navbar() {
           </div>
 
           {/* Enlaces de políticas */}
-          <div className="flex flex-col mt-6 text-sm text-black font-semibold">
+          <div className="flex flex-col mt-6 text-sm text-black font-gabarito">
             <Link href="/size-guide" onClick={toggleMenu}>Tabla de tallas</Link>
             <Link href="/privacy-policy" onClick={toggleMenu}>Aviso de Privacidad</Link>
             <Link href="/shipping-policy" onClick={toggleMenu}>Políticas de envío y devoluciones</Link>
