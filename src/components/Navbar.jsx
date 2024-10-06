@@ -49,7 +49,7 @@ function Navbar() {
         <Link href="/Cart">
         <FaShoppingCart className="text-2xl" />
               {totalItems > 0 && (
-                <span className="absolute top-0 right-0 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm">
+                <span className="absolute top-5 right-7 bg-red-500 text-white rounded-full w-4 h-4 flex items-center justify-center text-[10px]">
                   {totalItems}
                 </span>
               )}
