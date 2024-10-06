@@ -42,7 +42,7 @@ function Filtros({ productos, setFiltros }) {
   };
 
   return (
-    <div className="w-1/5 p-4 font-gabarito">
+    <div className="hidden md:block w-1/5 p-4 font-gabarito">
       {/* Filtro de Fit */}
       <div className="mb-4">
         <h3 className="uppercase font-bold mb-2">Fit</h3>
