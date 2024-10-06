@@ -103,7 +103,7 @@ export default function Producto({ producto }) {
           </div>
 
           {/* Agregar a la bolsa (ejemplo básico) */}
-          <button className="mt-4 bg-black text-white w-[256px] h-[50px] rounded-[28px] uppercase font-anton text-[30px] "
+          <button className="mt-4 bg-black text-white w-full md:w-[256px] h-[50px] rounded-[28px] uppercase font-anton text-[30px] "
           onClick={handleAddToCart}
           >
             Agregar a Bolsa
