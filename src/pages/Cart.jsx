@@ -34,7 +34,7 @@ export default function Cart() {
 
   return (
     <>
-    <div className="p-4 w-full flex flex-col lg:flex-row">
+    <div className="p-4 w-full flex flex-col lg:flex-row max-w-[1440px] min-w-sm mx-auto">
       <div className="lg:w-2/3 h-full flex flex-col">
         <h1 className="text-3xl font-anton uppercase mb-6 pt-1">
           Bolsa de Compra ({cartItems.length})

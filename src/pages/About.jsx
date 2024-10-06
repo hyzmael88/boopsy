@@ -13,7 +13,7 @@ export default function About() {
   };
 
   return (
-    <div className="px-4 lg:px-20 py-10">
+    <div className="px-4 lg:px-20 py-10 max-w-[1440px] min-w-sm mx-auto">
       {/* Sección principal */}
       <div className="flex flex-col md:flex-row items-center justify-between ">
         <motion.div

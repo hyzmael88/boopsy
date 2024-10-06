@@ -9,7 +9,7 @@ import Subscribe from "@/components/Home/Subscribe";
 
 export default function Home() {
   return (
-    <div className="bg-white">
+    <div className="bg-white max-w-[1440px] min-w-sm mx-auto">
       
       <Hero />
       <Categories />

@@ -23,7 +23,7 @@ export default function Producto({ producto }) {
 
 
   return (
-    <div className="p-4 md:p-10">
+    <div className="p-4 md:p-10 max-w-[1440px] min-w-sm mx-auto">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {/* Imágenes del producto */}
         <div>

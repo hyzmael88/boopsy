@@ -56,7 +56,7 @@ function Shop() {
   });
 
   return (
-    <div className='px-4 md:px-10'>
+    <div className='px-4 md:px-10 max-w-[1440px] min-w-sm mx-auto'>
       <h1 className="uppercase font-anton text-center lg:text-[60px]">
         Todos los productos
       </h1>

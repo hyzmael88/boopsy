@@ -26,7 +26,7 @@ function Navbar() {
   };
 
   return (
-    <div className='w-full h-[78px] flex justify-between items-center px-4 md:px-10 relative'>
+    <div className='w-full h-[78px] flex justify-between items-center px-4 md:px-10 relative max-w-[1440px] min-w-sm mx-auto'>
       {/* Ícono del menú en versión móvil */}
       <div className="md:hidden">
         <FaBars className="text-xl cursor-pointer" onClick={toggleMenu} />
