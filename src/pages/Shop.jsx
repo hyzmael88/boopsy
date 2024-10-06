@@ -57,20 +57,20 @@ function Shop() {
   });
 
   return (
-    <div className='px-4 md:px-10 max-w-[1440px] min-w-sm mx-auto'>
-      <h1 className="uppercase font-anton text-center lg:text-[60px] border-y-[1px] md:border-y-[0px] md:border-b-[1px]  border-black md:border-black/20">
+    <div className='px-4 md:px-10  max-w-[1440px] min-w-sm mx-auto'>
+      <h1 className="uppercase font-anton text-center lg:text-[60px] border-y-[1px] lg:border-y-[0px] lg:border-b-[1px]  border-black lg:border-black/20">
         Todos los productos
       </h1>
       <div className='w-full flex justify-between items-center border-b-[1px] border-black md:border-black/20 '>
-        <span className='border-r-[1px]  border-black md:border-black/20 px-[10px] md:px-[70px] py-[10px] md:py-[30px] font-gabarito flex gap-2 text-[10px] md:text-[16px] '>
+        <span className='border-r-[1px]  border-black md:border-black/20 px-[10px] lg:px-[70px] py-[10px] lg:py-[30px] font-gabarito flex gap-2 text-[10px] md:text-[16px] '>
          <Image src={"/assets/iconos/filtros.svg"} alt='icono filtros' width={17} height={17} className='w-[7px] md:w-[17px] '  /> Ocultar filtros
         </span>
-        <span className='border-l-[1px]  border-black md:border-black/20 px-[10px] md:px-[70px] py-[10px] md:py-[30px]  font-gabarito flex gap-2 text-[10px] md:text-[16px] '>
+        <span className='border-l-[1px]  border-black md:border-black/20 px-[10px] lg:px-[70px] py-[10px] lg:py-[30px]  font-gabarito flex gap-2 text-[10px] md:text-[16px] '>
           Ordenar por <Image src={"/assets/iconos/ordenar.svg"} alt='icono flecha abajo' width={17} height={17}  className='w-[7px] md:w-[17px] ' />
         </span>
 
       </div>
-      <div className="flex">
+      <div className="flex justify-center ">
         <Filtros productos={productos} setFiltros={setFiltros} />
         <Productos productosFiltrados={productosFiltrados} />
       </div>
