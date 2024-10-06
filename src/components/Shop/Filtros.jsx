@@ -1,7 +1,7 @@
 // components/Shop/Filtros.js
 import React, { useState, useEffect } from 'react';
 
-function Filtros({ productos, setFiltros }) {
+function Filtros({ productos, setFiltros, mostrarFiltros }) {
   // Estados para los filtros
   const [fitOptions, setFitOptions] = useState([]);
   const [tallaOptions, setTallaOptions] = useState([]);
@@ -42,10 +42,11 @@ function Filtros({ productos, setFiltros }) {
   };
 
   return (
-    <div className="hidden lg:block w-1/5 p-4 font-gabarito">
+    <div className={`hidden ${mostrarFiltros && "lg:block"} w-1/5 p-4 font-gabarito`}>
       {/* Filtro de Fit */}
       <div className="mb-4">
-        <h3 className="uppercase font-bold mb-2">Fit</h3>
+        <h3 className=" font-gabarito font-bold mb-2 border-b-[1px] border-black/20">Fit</h3>
+        
         {fitOptions.map((fitOption) => (
           <label key={fitOption} className="block mb-2">
             <input
@@ -53,8 +54,6 @@ function Filtros({ productos, setFiltros }) {
               value={fitOption}
               onChange={handleFitChange}
             />
-            {console.log(fitOption)}
-            {console.log(fitOptions)}
             <span className="ml-2">{fitOption}</span>
           </label>
         ))}
@@ -62,7 +61,7 @@ function Filtros({ productos, setFiltros }) {
 
       {/* Filtro de Talla */}
       <div className="mb-4">
-        <h3 className="uppercase font-bold mb-2">Talla</h3>
+        <h3 className="font-bold font-gabarito mb-2 border-b-[1px] border-black/20">Talla</h3>
         {tallaOptions.map((tallaOption) => (
           <label key={tallaOption} className="block mb-2">
             <input
@@ -78,8 +77,7 @@ function Filtros({ productos, setFiltros }) {
 
       {/* Filtro de Color */}
       <div className="mb-4">
-        <h3 className="uppercase font-bold mb-2">Color</h3>
-        {console.log(colorOptions)}
+        <h3 className="font-gabarito font-bold mb-2 border-b-[1px] border-black/20">Color</h3>
         {colorOptions.map((colorOption) => (
           <label key={colorOption} className="block mb-2">
             <input

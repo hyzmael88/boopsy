@@ -5,6 +5,8 @@ import { client } from '@/sanity/lib/client';
 import Image from 'next/image';
 
 function Shop() {
+  const [mostrarFiltros, setMostrarFiltros] = useState(false);
+
   const [productos, setProductos] = useState([]);
   const [filtros, setFiltros] = useState({
     fit: [],
@@ -62,8 +64,10 @@ function Shop() {
         Todos los productos
       </h1>
       <div className='w-full flex justify-between items-center border-b-[1px] border-black md:border-black/20 '>
-        <span className='border-r-[1px]  border-black md:border-black/20 px-[10px] lg:px-[70px] py-[10px] lg:py-[30px] font-gabarito flex gap-2 text-[10px] md:text-[16px] '>
-         <Image src={"/assets/iconos/filtros.svg"} alt='icono filtros' width={17} height={17} className='w-[7px] md:w-[17px] '  /> Ocultar filtros
+        <span className='border-r-[1px]  border-black md:border-black/20 px-[10px] lg:px-[70px] py-[10px] lg:py-[30px] font-gabarito flex gap-2 text-[10px] md:text-[16px] cursor-pointer '
+        onClick={() => setMostrarFiltros(!mostrarFiltros)}
+        >
+         <Image src={"/assets/iconos/filtros.svg"} alt='icono filtros' width={17} height={17} className='w-[7px] md:w-[17px] '  /> {mostrarFiltros ? 'Ocultar filtros' : 'Mostrar filtros'}
         </span>
         <span className='border-l-[1px]  border-black md:border-black/20 px-[10px] lg:px-[70px] py-[10px] lg:py-[30px]  font-gabarito flex gap-2 text-[10px] md:text-[16px] '>
           Ordenar por <Image src={"/assets/iconos/ordenar.svg"} alt='icono flecha abajo' width={17} height={17}  className='w-[7px] md:w-[17px] ' />
@@ -71,7 +75,9 @@ function Shop() {
 
       </div>
       <div className="flex justify-center ">
-        <Filtros productos={productos} setFiltros={setFiltros} />
+        <Filtros
+        mostrarFiltros={mostrarFiltros}
+        productos={productos} setFiltros={setFiltros} />
         <Productos productosFiltrados={productosFiltrados} />
       </div>
     </div>
