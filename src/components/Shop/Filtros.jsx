@@ -2,6 +2,8 @@
 import React, { useState, useEffect } from 'react';
 
 function Filtros({ productos, setFiltros, mostrarFiltros }) {
+
+  console.log(productos)
   // Estados para los filtros
   const [fitOptions, setFitOptions] = useState([]);
   const [tallaOptions, setTallaOptions] = useState([]);
@@ -21,6 +23,8 @@ function Filtros({ productos, setFiltros, mostrarFiltros }) {
     setTallaOptions(tallas);
     setColorOptions(colores);
   }, [productos]);
+
+  console.log(colorOptions)
 
   // Funciones para manejar cambios en los filtros
   const handleFitChange = (e) => {
@@ -79,7 +83,7 @@ function Filtros({ productos, setFiltros, mostrarFiltros }) {
       <div className="mb-4">
         <h3 className="font-gabarito font-bold mb-2 border-b-[1px] border-black/20">Color</h3>
         {colorOptions.map((colorOption) => (
-          <label key={colorOption} className="block mb-2">
+          <label key={colorOption} className="flex gap-1 mb-2">
             <input
               type="checkbox"
               value={colorOption
@@ -87,7 +91,9 @@ function Filtros({ productos, setFiltros, mostrarFiltros }) {
               name="color"
               onChange={handleColorChange}
             />
-            <span className="ml-2">{colorOption}</span>
+            <div className="ml-2 font-gabarito text-[16px] flex gap-2"> <div className='w-[20px] h-[20px] rounded-full'
+            style={{ backgroundColor: colorOption.hex }}
+            /> {colorOption.name}</div>
           </label>
         ))}
       </div>

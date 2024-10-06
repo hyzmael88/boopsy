@@ -98,7 +98,7 @@ export default {
       to: [{ type: 'color' }],
       description: 'Colores del producto.',
       validation: Rule => Rule.required().error('Debe agregar al menos un color')
-    },
+    }, 
     {
       name: 'categoria',
       title: 'Categoría',
