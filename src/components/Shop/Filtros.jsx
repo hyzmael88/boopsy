@@ -1,7 +1,7 @@
 // components/Shop/Filtros.js
 import React, { useState, useEffect } from 'react';
 
-function Filtros({ productos, setFiltros, mostrarFiltros }) {
+function Filtros({ productos, setFiltros, mostrarFiltros, mostrarFiltrosMovil }) {
 
   console.log(productos)
   // Estados para los filtros
@@ -46,7 +46,7 @@ function Filtros({ productos, setFiltros, mostrarFiltros }) {
   };
 
   return (
-    <div className={`hidden ${mostrarFiltros && "lg:block"} w-1/5 p-4 font-gabarito`}>
+    <div className={` ${mostrarFiltrosMovil && "block"} ${mostrarFiltros && "hidden lg:block w-1/5 p-4"}  font-gabarito`}>
       {/* Filtro de Fit */}
       <div className="mb-4">
         <h3 className=" font-gabarito font-bold mb-2 border-b-[1px] border-black/20">Fit</h3>

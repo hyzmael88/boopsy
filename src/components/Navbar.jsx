@@ -61,7 +61,7 @@ function Navbar() {
       </div>
 
       {/* Menú móvil */}
-      <div className={`fixed top-0 left-0 w-full h-full pt-[100px] bg-white z-50 p-6 transition-transform transform ${menuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+      <div className={`fixed top-0 left-0 w-full h-full pt-[100px] bg-white z-50 p-6 transition-transform transform ${menuOpen ? 'translate-x-0' : '-translate-x-full'}`}> 
         {/* Botón para cerrar el menú */}
         <div className="flex justify-start">
           <FaTimes className="text-[30px] cursor-pointer" onClick={toggleMenu} />
