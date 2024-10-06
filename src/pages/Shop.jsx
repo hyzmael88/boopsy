@@ -62,11 +62,11 @@ function Shop() {
         Todos los productos
       </h1>
       <div className='w-full flex justify-between items-center border-b-[1px] border-black md:border-black/20 '>
-        <span className='border-r-[1px]  border-black md:border-black/20  px-[70px] py-[30px] font-gabarito flex gap-2 text-[16px] '>
-         <Image src={"/assets/iconos/filtros.svg"} alt='icono filtros' width={17} height={17} /> Ocultar filtros
+        <span className='border-r-[1px]  border-black md:border-black/20 px-[10px] md:px-[70px] py-[10px] md:py-[30px] font-gabarito flex gap-2 text-[10px] md:text-[16px] '>
+         <Image src={"/assets/iconos/filtros.svg"} alt='icono filtros' width={17} height={17} className='w-[7px] md:w-[17px] '  /> Ocultar filtros
         </span>
-        <span className='border-l-[1px]  border-black md:border-black/20 px-[70px] py-[30px] font-gabarito flex gap-2  text-[16px] '>
-          Ordenar por <Image src={"/assets/iconos/ordenar.svg"} alt='icono flecha abajo' width={17} height={17} />
+        <span className='border-l-[1px]  border-black md:border-black/20 px-[10px] md:px-[70px] py-[10px] md:py-[30px]  font-gabarito flex gap-2 text-[10px] md:text-[16px] '>
+          Ordenar por <Image src={"/assets/iconos/ordenar.svg"} alt='icono flecha abajo' width={17} height={17}  className='w-[7px] md:w-[17px] ' />
         </span>
 
       </div>
