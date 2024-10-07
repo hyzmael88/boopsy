@@ -78,7 +78,7 @@ function Login() {
             </label>
             <input
               type="email"
-              className="border-2 border-black bg-white/70 md:w-3/4 rounded-[13px]  "
+              className="border-2 border-black bg-white/70 md:w-3/4 rounded-[13px] pl-4  "
               name="email"
               id="email"
               onChange={handleChange}
@@ -91,7 +91,7 @@ function Login() {
             </label>
             <input
               type="password"
-              className="border-2 border-black bg-white/70 md:w-3/4 rounded-[13px]"
+              className="border-2 border-black bg-white/70 md:w-3/4 rounded-[13px] pl-4"
               id="password"
               name="password"
               onChange={handleChange}
