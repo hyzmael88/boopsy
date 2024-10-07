@@ -8,6 +8,9 @@ import { FaTimes } from "react-icons/fa";
 function Shop() {
   const [mostrarFiltros, setMostrarFiltros] = useState(true);
   const [mostrarFiltrosMovil, setMostrarFiltrosMovil] = useState(false);
+  const [mostrarOrden, setMostrarOrden] = useState(false)
+  const [criterioOrden, setCriterioOrden] = useState("relevancia");
+
 
   const [productos, setProductos] = useState([]);
   const [filtros, setFiltros] = useState({
@@ -65,6 +68,27 @@ function Shop() {
     setMostrarFiltrosMovil(!mostrarFiltrosMovil);
   };
 
+  const handleOrdenChange = (criterio) => {
+    setCriterioOrden(criterio);
+  };
+
+  const ordenarProductos = (productos, criterio) => {
+    switch (criterio) {
+      case "relevancia":
+        return productos; // Asume que los productos ya están ordenados por relevancia
+      case "masVendido":
+        return productos.sort((a, b) => b.ventas - a.ventas); // Ordenar por ventas
+      case "menorPrecio":
+        return productos.sort((a, b) => a.precio - b.precio); // Ordenar por menor precio
+      case "mayorPrecio":
+        return productos.sort((a, b) => b.precio - a.precio); // Ordenar por mayor precio
+      default:
+        return productos;
+    }
+  };
+  const productosOrdenados = ordenarProductos([...productosFiltrados], criterioOrden);
+
+
   return (
     <div className="px-4 md:px-10  max-w-[1440px] min-w-sm mx-auto relative">
       <h1 className="uppercase font-anton text-center lg:text-[60px] border-y-[1px] lg:border-y-[0px] lg:border-b-[1px]  border-black lg:border-black/20">
@@ -98,8 +122,16 @@ function Shop() {
           />{" "}
           {mostrarFiltrosMovil ? "Ocultar filtros" : "Mostrar filtros"}
         </span>
-        <span className="border-l-[1px]  border-black md:border-black/20 px-[10px] lg:px-[70px] py-[10px] lg:py-[30px]  font-gabarito flex gap-2 text-[10px] md:text-[16px] ">
-          Ordenar por{" "}
+        <div className="border-l-[1px]  border-black md:border-black/20 px-[10px] lg:px-[70px] py-[10px] lg:py-[30px]  font-gabarito flex gap-2 text-[10px] md:text-[16px] relative cursor-pointer"
+         onClick={()=>setMostrarOrden(!mostrarOrden)}
+        >
+         { 
+          mostrarOrden ?
+         <>
+         <span
+         >
+           Ordenar por
+         </span>
           <Image
             src={"/assets/iconos/ordenar.svg"}
             alt="icono flecha abajo"
@@ -107,7 +139,46 @@ function Shop() {
             height={17}
             className="w-[7px] md:w-[17px] "
           />
-        </span>
+          </>
+          :
+          <>
+          <span className="pl-[41px]"
+         
+          >
+            Cerrar
+          </span>
+          <Image
+            src={"/assets/iconos/ordenar.svg"}
+            alt="icono flecha abajo"
+            width={17}
+            height={17}
+            className="w-[7px] md:w-[17px] "
+          />
+          </>
+         }
+         {
+            !mostrarOrden &&
+          <div className={"absolute -bottom-[147px] md:-bottom-[252px] lg:-bottom-[150px] right-[0px] lg:right-[2px]  w-[150px] h-[150px] md:h-[250px] lg:h-[100px] lg:w-full text-center bg-white "}>
+            <ul className="w-full h-full flex flex-col justify-center items-center gap-4">
+            <li>
+            <button onClick={() => handleOrdenChange("relevancia")}>Relevancia</button>
+          </li>
+          <li>
+            <button onClick={() => handleOrdenChange("masVendido")}>Lo más vendido</button>
+          </li>
+          <li>
+            <button onClick={() => handleOrdenChange("menorPrecio")}>Menor a mayor precio</button>
+          </li>
+          <li>
+            <button onClick={() => handleOrdenChange("mayorPrecio")}>Mayor a menor precio</button>
+          </li>
+
+              </ul>
+
+          </div>
+}
+          
+        </div>
       </div>
       {/* filtros móvil */}
       <div
@@ -134,7 +205,7 @@ function Shop() {
           productos={productos}
           setFiltros={setFiltros}
         />
-        <Productos productosFiltrados={productosFiltrados} />
+        <Productos productosFiltrados={productosOrdenados} />
       </div>
     </div>
   );
