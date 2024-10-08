@@ -1,5 +1,5 @@
 
-import { client } from '@/lib/client';
+import { client } from '@/sanity/lib/client';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken'
 import {serialize} from 'cookie'

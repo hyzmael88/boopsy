@@ -203,7 +203,7 @@ const Dashboard = () => {
                 <p className="flex flex-row gap-4 mt-9 items-center cursor-pointer ">
                   
                   
-      <a href="https://auroelia.com/studio/structure/producto"
+      <a href="https://boopsy.vercel.app/studio/structure/producto"
             target="_blank"
             rel="noopener noreferrer" className="text-[26px]  font-inter tracking-[2px]"
       >
