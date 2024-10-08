@@ -1,9 +1,15 @@
 // components/Footer.js
+import { useRouter } from 'next/router';
 import { FaFacebook, FaInstagram, FaTiktok } from 'react-icons/fa';
 
 const Footer = () => {
   const year = new Date().getFullYear();
+
+  const router = useRouter();
+
   return (
+    <>
+    {router.pathname.startsWith("/Login") || router.pathname.startsWith("/Dashboard") ? null : (
     <footer className="bg-black text-white py-10 mt-4">
       <div className="max-w-7xl mx-auto px-4">
         {/* Sección superior */}
@@ -50,6 +56,8 @@ const Footer = () => {
         </div>
       </div>
     </footer>
+    )}
+    </>
   );
 };
 
