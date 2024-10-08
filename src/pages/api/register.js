@@ -3,10 +3,12 @@ import { client } from '@/sanity/lib/client';
 
 export default async function handler(req, res) {
   if (req.method === 'POST') {
-    const { email, password } = req.body;
+    const {name, email, hashedPassword } = req.body;
 
-    if (!email || !email.includes('@') || !password) {
-      return res.status(400).json({ error: 'Correo electrónico o contraseña inválidos' });
+    console.log(name, email, hashedPassword);
+
+    if (!email || !email.includes('@') || !hashedPassword) {
+      return res.status(403).json({ error: 'Correo electrónico o contraseña inválidos' });
     }
 
     try {
@@ -23,8 +25,9 @@ export default async function handler(req, res) {
       // Crear un nuevo usuario
       await client.create({
         _type: 'user',
+        name,
         email,
-        password, // Asegúrate de que la contraseña esté encriptada antes de guardarla
+        hashedPassword, // Asegúrate de que la contraseña esté encriptada antes de guardarla
       });
 
       return res.status(200).json({ message: 'Registro exitoso' });

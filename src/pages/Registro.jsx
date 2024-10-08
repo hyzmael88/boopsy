@@ -12,6 +12,8 @@ function Registro() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [message, setMessage] = useState('');
+
   const router = useRouter();
 
   const handleSubmit = async (e) => {
@@ -21,9 +23,28 @@ function Registro() {
     try {
       const salt = await bcrypt.genSalt(10);
       const hashedPassword = await bcrypt.hash(password, salt);
-    postUser(name, email, hashedPassword)
+      console.log(hashedPassword);
+    /* postUser(name, email, hashedPassword) */
+    const res = await fetch('/api/register', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({name, email, hashedPassword }),
+    });
 
-      router.push('/Login');
+    const data = await res.json();
+
+    if (res.status === 200) {
+      setMessage('Registro exitoso');
+      setEmail('');
+      setName('');
+      setPassword('');
+    } else {
+      setMessage(data.error);
+    }
+/* 
+      router.push('/Login'); */
     } catch (err) {
         console.log(err)
       setError('Error al crear el usuario.');
@@ -66,6 +87,7 @@ function Registro() {
         <button type="submit" className='bg-blue-500 w-[100px] px-4 py-2 mt-4 mb-4 rounded-lg'>Ingresar</button>
         </div>
       </form>
+      {message && <p className="mt-4 text-red-500 font-gabarito">{message}</p>}
       </div>
       
     </div>

@@ -5,13 +5,19 @@ export default {
     title: 'User',
     fields: [
       {
+        name: 'name',
+        type: 'string',
+        title: 'Name',
+        validation: Rule => Rule.required(),
+      },
+      {
         name: 'email',
         type: 'string',
         title: 'Email',
         validation: Rule => Rule.required().email(),
       },
       {
-        name: 'password',
+        name: 'hashedPassword',
         type: 'string',
         title: 'Password',
         validation: Rule => Rule.required(),

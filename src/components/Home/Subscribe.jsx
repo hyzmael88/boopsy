@@ -22,7 +22,7 @@ const Subscribe = () => {
       setEmail('');
     } else {
       setMessage(data.error);
-    }
+    } 
   };
 
   return (

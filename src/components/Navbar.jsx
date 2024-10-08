@@ -4,7 +4,6 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { useContext, useEffect, useState } from 'react';
 import { FaSearch, FaShoppingCart, FaBars, FaTimes, FaFacebook, FaInstagram, FaTiktok } from 'react-icons/fa';
-import { set } from 'sanity';
 
 function Navbar() {
 
@@ -29,6 +28,8 @@ function Navbar() {
   };
 
   return (
+    <>
+    {router.pathname.startsWith("/Login") || router.pathname.startsWith("/Dashboard") ? null : (
     <div className='w-full h-[78px] flex justify-between items-center px-4 md:px-10 relative max-w-[1440px] min-w-sm mx-auto'>
       {/* Ícono del menú en versión móvil */}
       <div className="md:hidden">
@@ -102,6 +103,8 @@ function Navbar() {
         </div>
       </div>
     </div>
+    )}
+    </>
   );
 }
 
