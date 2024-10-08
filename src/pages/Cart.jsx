@@ -4,6 +4,11 @@ import Link from "next/link";
 import { AppContext } from "@/context/AppContext";
 import { FaShoppingBag, FaTrash } from "react-icons/fa";
 import Subscribe from "@/components/Home/Subscribe";
+import { loadStripe } from '@stripe/stripe-js';
+
+const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY_TEST);
+
+console.log(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY_TEST);
 
 export default function Cart() {
   const { getCart, updateCartItem, removeFromCart, cart } =
@@ -31,6 +36,35 @@ export default function Cart() {
     (acc, item) => acc + item.product.precio * item.qty,
     0
   );
+
+  const handleCheckout = async () => {
+    const stripe = await stripePromise;
+
+    const response = await fetch('/api/stripe/create-checkout-session', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        items: cart.map(item => ({
+          name: item.product.nombre,
+          price: item.product.precio,
+          quantity: item.qty,
+          image: item.product.imagenes[0].asset.url
+        })),
+      }),
+    });
+
+    const session = await response.json();
+
+    const result = await stripe.redirectToCheckout({
+      sessionId: session.id,
+    });
+
+    if (result.error) {
+      console.error(result.error.message);
+    }
+  };
 
   return (
     <>
@@ -120,7 +154,9 @@ export default function Cart() {
         </div>
 
         <div className="p-4 w-full flex flex-col items-center  ">
-          <button className="w-[224px] h-[27px] lg:w-full lg:h-[50px] bg-black text-white uppercase text-center font-anton rounded-[28px] text-[16px] lg:text-[30px] flex justify-center items-center gap-2">
+          <button className="w-[224px] h-[27px] lg:w-full lg:h-[50px] bg-black text-white uppercase text-center font-anton rounded-[28px] text-[16px] lg:text-[30px] flex justify-center items-center gap-2"
+          onClick={handleCheckout}
+          >
             <FaShoppingBag />
             Realizar Pago
           </button>

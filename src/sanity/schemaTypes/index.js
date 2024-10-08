@@ -5,7 +5,8 @@ import producto from "./producto";
 import fit from './fit';
 import suscriptor from "./suscriptor";
 import user from './user'
+import venta from "./venta";
 
 export const schema = {
-  types: [producto, categoria, fabricante, fit, color, suscriptor, user ],
+  types: [producto, categoria, fabricante, fit, color, suscriptor, user, venta ],
 };
