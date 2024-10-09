@@ -5,10 +5,10 @@ import Image from "next/image";
 
 const Categories = () => {
    
-    const [categories, setCategories] = useState([])
+    const [fits, setFits] = useState([])
 
     useEffect(() => {
-      const fetchCategories = async () => {
+      const fetchFits = async () => {
       const data = await client.fetch(`*[_type == "fit"]{
         name,
         image{
@@ -18,27 +18,27 @@ const Categories = () => {
         }
 
       }`);
-      setCategories(data);
+      setFits(data);
     }
-    fetchCategories();
+    fetchFits();
   }
   , []);
 
-  console.log(categories)
-  console.log(categories[0]?.image?.asset?.url)
+  console.log(fits)
+  console.log(fits[0]?.image?.asset?.url)
   
     return (
       <section className="py-12">
-        <h2 className="text-[20px] lg:text-[60px] font-anton uppercase text-center  mb-8">Categorías</h2>
+        <h2 className="text-[20px] lg:text-[60px] font-anton uppercase text-center  mb-8">Fit</h2>
         <div className="flex gap-6 px-4 ">
-          {categories.map((category, index) => (
+          {fits.map((fit, index) => (
             <div key={index} className="relative group overflow-hidden cursor-pointer ">
               <Image 
               width={500}
               height={500}
-              src={category?.image?.asset?.url} alt={category.name} className="w-[274px] h-[274px] object-cover group-hover:scale-110 transition-transform duration-300" />
+              src={fit?.image?.asset?.url} alt={fit.name} className="w-[274px] h-[274px] object-cover group-hover:scale-110 transition-transform duration-300" />
               
-            <p className="text-center font-gabarito text-[20px] my-[25px] ">{category.name}</p>
+            <p className="text-center font-gabarito text-[20px] my-[25px] ">{fit.name}</p>
             </div>
           ))}
         </div>
