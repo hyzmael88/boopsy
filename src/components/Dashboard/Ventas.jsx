@@ -11,18 +11,24 @@ function Ventas() {
   const [totalItems, setTotalItems] = useState(0);
   const [currentVentas, setCurrentVentas] = useState([]); // Nueva variable de estado
   const { deleteVenta } = useContext(AppContext);
+
   useEffect(() => {
     client
-      .fetch(`*[_type == "pedido"] | order(_createdAt desc)`)
+      .fetch(`*[_type == "venta"] | order(_createdAt desc)`)
       .then((data) => {
         setTotalItems(data.length);
         setVentas(data);
       })
       .catch((error) => console.error(error));
   }, []);
+
+  console.log(totalItems)
+
   useEffect(() => {
     setTotalItems(ventas.length);
   }, [ventas]);
+
+
   useEffect(() => {
     // Actualizar las ventas de la página actual cuando cambie la página actual o el conjunto total de ventas
     const start = (currentPage - 1) * itemsPerPage;
@@ -56,6 +62,10 @@ function Ventas() {
     }
   };
 
+  console.log(currentVentas)
+
+  
+
   
 
 
@@ -70,14 +80,12 @@ function Ventas() {
       <div className="w-full h-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-[10px] gap-y-[20px] place-items-center lg:mt-[100px]  ">
         {
           currentVentas.map((venta, ventaIndex) => (
-            venta.productos.map((productoVenta, productoIndex) => (
+           
               <Venta
-                key={`${venta._id}-${productoIndex}`}
+                key={`${venta._id}-${ventaIndex}`}
                 venta={venta}	
-                productoVenta={productoVenta}
                 handleDeleteVenta={handleDeleteVenta}
               />
-            ))
           ))
         }
       </div> 

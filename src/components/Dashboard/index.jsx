@@ -28,13 +28,23 @@ const Dashboard = () => {
     email: "",
     name: "",
   });
+
   const router = useRouter();
   const { component } = router.query;
 
   const getProfile = async () => {
-    const response = await axios.get("/api/auth/profile");
-    setUser(response.data);
+    try {
+      const response = await axios.get("/api/auth/profile");
+      setUser(response.data);
+    } catch (error) {
+      if (error.response && error.response.status === 401) {
+        router.push('/Login');
+      } else {
+        console.error('Error al obtener el perfil:', error);
+      }
+    }
   };
+
   useEffect(() => {
     getProfile();
   }, []);
