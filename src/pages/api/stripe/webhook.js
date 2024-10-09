@@ -40,7 +40,7 @@ export default async function handler(req, res) {
         await client.create({
           _type: 'venta',
           sessionId: session.id,
-          amount_total: session.amount_total,
+          amount_total: session.amount_total /100,
           currency: session.currency,
           customer_email: session.customer_details.email,
           line_items: lineItems.data.map(item => ({

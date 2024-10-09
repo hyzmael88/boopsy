@@ -104,6 +104,7 @@ const addToCart = (product, size, qty) => {
 
   // Delete
   const deleteCart = () => {
+    localStorage.removeItem('cart');
     setCart([]);
   };
 

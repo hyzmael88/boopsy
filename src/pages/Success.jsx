@@ -1,8 +1,18 @@
 // src/pages/Success.jsx
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import Link from 'next/link';
+import { AppContext } from '@/context/AppContext';
 
 const Success = () => {
+
+    const {deleteCart} = useContext(AppContext);
+
+    useEffect(() => {
+        deleteCart();
+    }
+    , []);
+    
+
   return (
     <div className="flex flex-col items-center justify-center h-[70vh] bg-gray-100 p-4">
       <div className="bg-white p-6 rounded-lg shadow-lg text-center">

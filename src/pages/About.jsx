@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import Categories from '@/components/Home/Categories';
+import Fit from '@/components/Home/Fit';
 
 export default function About() {
   // Estado para manejar las preguntas abiertas
@@ -95,7 +95,7 @@ lo formal y lo sofisticado en un sólo lugar.
           </motion.div>
         ))}
       </div>
-      <Categories/>
+      <Fit/>
     </div>
   );
 }
