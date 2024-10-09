@@ -30,7 +30,8 @@
     "react-iframe": "^1.8.5",
     "sanity": "^3.58.0",
     "stripe": "^17.1.0",
-    "styled-components": "^6.1.13"
+    "styled-components": "^6.1.13",
+    "uuid": "^10.0.0"
   },
   "devDependencies": {
     "eslint": "^8",

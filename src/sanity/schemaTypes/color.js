@@ -13,10 +13,6 @@ export default {
             name: 'hex',
             title: 'Hex Code',
             type: 'string',
-            validation: Rule => Rule.required().regex(/^#([0-9A-F]{3}){1,2}$/i, {
-                name: 'hex code', // Error message is "Does not match hex code pattern"
-                invert: false // Boolean to allow any value that does NOT match pattern
-            })
         },
         {
             name: 'description',

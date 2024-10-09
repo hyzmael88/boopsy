@@ -2,6 +2,8 @@
 import { buffer } from 'micro';
 import Stripe from 'stripe';
 import { client } from '@/sanity/lib/client';
+import { v4 as uuidv4 } from 'uuid';
+
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY_TEST);
 
@@ -30,6 +32,9 @@ export default async function handler(req, res) {
     if (event.type === 'checkout.session.completed') {
       const session = event.data.object;
 
+      // Obtener los line items de la sesión
+      const lineItems = await stripe.checkout.sessions.listLineItems(session.id);
+
       // Guardar la información de la venta en Sanity
       try {
         await client.create({
@@ -38,10 +43,11 @@ export default async function handler(req, res) {
           amount_total: session.amount_total,
           currency: session.currency,
           customer_email: session.customer_details.email,
-          line_items: session.display_items.map(item => ({
-            name: item.custom.name,
+          line_items: lineItems.data.map(item => ({
+            _key: uuidv4(), // Generar un valor único para _key
+            name: item.description,
             quantity: item.quantity,
-            price: item.amount / 100,
+            price: item.amount_total / 100,
           })),
         });
       } catch (error) {
