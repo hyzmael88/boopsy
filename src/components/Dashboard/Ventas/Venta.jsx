@@ -69,20 +69,6 @@ useEffect(() => {
   }, []);
   
 
-  // Obtener detalles del producto
-  const fetchProductDetails = async (productId) => {
-    const product = await client.fetch(`*[_id == "${productId}"]`);
-    return product[0]; // Devuelve el primer producto que coincida con el ID
-  };
-
-  useEffect(() => {
-    const fetchProducts = async () => {
-      const fetchedProduct = await fetchProductDetails(venta?.line_items[0]?._key);
-      setProduct(fetchedProduct);
-    };
-    fetchProducts();
-  }, [venta]);
-
   const handleEstadoChange = (e) => {
     const newEstado = e.target.value;
     setEstado(newEstado);
@@ -124,13 +110,25 @@ useEffect(() => {
           className="w-full h-40 object-cover rounded-t-lg"
         />
       )}
-
+<span className="text-sm text-gray-600">{new Date(venta._createdAt).toLocaleDateString()}</span>
+<span className="text-sm text-gray-600">{venta.customer_email}</span>
       {/* Información de la venta */}
       <div className="flex flex-col space-y-2">
-        <span className="font-bold text-lg">{product?.nombre || 'Producto'}</span>
-        <span className="text-sm text-gray-600">${venta.amount_total} MXN</span>
-        <span className="text-sm text-gray-600">{new Date(venta._createdAt).toLocaleDateString()}</span>
-        <span className="text-sm text-gray-600">{venta.customer_email}</span>
+        <div className='h-[100px] overflow-auto '>
+        {
+          venta.line_items.map((item, index) => (
+            <div key={index} className="flex items-center justify-between">
+              <span className="font-semibold">{item.name}</span>
+              <span className="text-sm text-gray-600">${item.price} MXN</span>
+              <span className="text-sm text-gray-600">x{item.quantity}</span>
+            </div>
+          ))
+        }
+        </div>
+        <span className="font-bold text-lg"></span>
+        <p className="flex justify-between text-sm text-gray-600">Total: <span>${venta.amount_total} MXN</span></p>
+        
+        
 
         {direccion && (
   <div className="mt-4">
@@ -143,7 +141,7 @@ useEffect(() => {
 
 
         {/* Estado del pedido */}
-        <div className="flex items-center gap-2 mt-2">
+        <div className="flex items-center justify-between gap-2 mt-2">
           <select
             value={estado}
             onChange={handleEstadoChange}
@@ -154,13 +152,14 @@ useEffect(() => {
             <option value="enviado">Enviado</option>
             <option value="finalizado">Finalizado</option>
           </select>
+           {/* Botones de acción */}
+        <div className="flex gap-4 mt-2">
+{/*           <FaEdit className="cursor-pointer" onClick={openModal} />
+ */}          <FaTrash className="cursor-pointer" onClick={() => handleDeleteVenta(venta._id)} />
+        </div>
         </div>
 
-        {/* Botones de acción */}
-        <div className="flex gap-4 mt-2">
-          <FaEdit className="cursor-pointer" onClick={openModal} />
-          <FaTrash className="cursor-pointer" onClick={() => handleDeleteVenta(venta._id)} />
-        </div>
+       
 
         {/* Modal para editar la venta */}
         {isModalOpen && (
