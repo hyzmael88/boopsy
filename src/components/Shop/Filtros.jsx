@@ -1,7 +1,7 @@
 // components/Shop/Filtros.js
 import React, { useState, useEffect } from 'react';
 
-function Filtros({ productos, setFiltros, mostrarFiltros, mostrarFiltrosMovil }) {
+function Filtros({ productos, setFiltros, mostrarFiltros, mostrarFiltrosMovil, selectedFit }) {
 
   console.log(productos)
   // Estados para los filtros
@@ -25,6 +25,9 @@ function Filtros({ productos, setFiltros, mostrarFiltros, mostrarFiltrosMovil })
   }, [productos]);
 
   console.log(colorOptions)
+
+  
+
 
   // Funciones para manejar cambios en los filtros
   const handleFitChange = (e) => {

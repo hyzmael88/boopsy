@@ -4,12 +4,29 @@ import Productos from "@/components/Shop/Productos";
 import { client } from "@/sanity/lib/client";
 import Image from "next/image";
 import { FaTimes } from "react-icons/fa";
+import { useRouter } from "next/router";
 
 function Shop() {
   const [mostrarFiltros, setMostrarFiltros] = useState(true);
   const [mostrarFiltrosMovil, setMostrarFiltrosMovil] = useState(false);
   const [mostrarOrden, setMostrarOrden] = useState(false)
   const [criterioOrden, setCriterioOrden] = useState("relevancia");
+
+  const router = useRouter();
+  const { fit } = router.query; // Obtener el parámetro fit de la URL
+  const [selectedFit, setSelectedFit] = useState(null);
+
+  useEffect(() => {
+    if (fit) {
+      setSelectedFit(fit); // Actualizar el estado del filtro basado en el parámetro fit
+    }
+  }, [fit]);
+
+  const handleFilterChange = (newFit) => {
+    setSelectedFit(newFit);
+    // Aquí puedes agregar lógica adicional para manejar el cambio de filtro
+  };
+
 
 
   const [productos, setProductos] = useState([]);
@@ -87,6 +104,8 @@ function Shop() {
     }
   };
   const productosOrdenados = ordenarProductos([...productosFiltrados], criterioOrden);
+
+
 
 
   return (
@@ -195,6 +214,7 @@ function Shop() {
           mostrarFiltrosMovil={mostrarFiltrosMovil}
           productos={productos}
           setFiltros={setFiltros}
+          selectedFit={selectedFit}
         />
       </div>
 
@@ -204,6 +224,7 @@ function Shop() {
           mostrarFiltros={mostrarFiltros}
           productos={productos}
           setFiltros={setFiltros}
+          selectedFit={selectedFit}
         />
         <Productos productosFiltrados={productosOrdenados} />
       </div>
