@@ -28,7 +28,7 @@ function Banner() {
             {`REDEFINIENDO
            EL ESTILO
           CONTEMPORÁNEO`}
-          </h1>
+          </h1> 
           <p className="text-center text-[12px] lg:text-[16px] sm:text-[20px] max-w-sm mx-auto mt-4 whitespace-pre-line">
             {`Nuevos estilos. Nuevos lanzamientos.
            Descubre cuál es tu favorito.`}

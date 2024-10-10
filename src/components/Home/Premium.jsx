@@ -12,7 +12,7 @@ function Premium() {
                 {`PREMIUM 
                 QUALITY JEANS`}
                 </h1>
-              <p className="mt-4 text-[10px] md:text-xl max-w-md mx-auto">Te presentamos nuestra colección premium</p>
+              <p className="mt-4 text-[12px] lg:text-[16px] sm:text-[20px] max-w-md mx-auto">Te presentamos nuestra colección premium</p>
               <Link href="#" className="inline-block mt-8 w-[134px] h-[27px]  bg-black text-white rounded-[28px] text-[16px] hover:bg-gray-200 transition font-anton uppercase">
                 JEANS PREMIUM
               </Link>

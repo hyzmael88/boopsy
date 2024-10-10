@@ -177,7 +177,7 @@ function Shop() {
          }
          {
             mostrarOrden &&
-          <div className={"absolute -bottom-[147px] md:-bottom-[252px] lg:-bottom-[150px] right-[0px] lg:right-[2px]  w-[150px] h-[150px] md:h-[250px] lg:h-[100px] lg:w-full text-center bg-white "}>
+          <div className={"absolute -bottom-[147px] md:-bottom-[252px] lg:-bottom-[150px] right-[0px] lg:right-[2px]  w-[150px] h-[150px] md:h-[250px] lg:h-[160px] lg:w-full text-center bg-white "}>
             <ul className="w-full h-full flex flex-col justify-center items-center gap-4">
             <li>
             <button onClick={() => handleOrdenChange("relevancia")}>Relevancia</button>
