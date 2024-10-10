@@ -43,7 +43,7 @@ const Fit = () => {
     return (
       <section className="py-12">
         <h2 className="text-[20px] lg:text-[60px] font-anton uppercase text-center  mb-8">Fit</h2>
-        <div className="flex lg:justify-center gap-6 px-4 overflow-auto w-full  ">
+        <div className="flex lg:justify-center gap-6 px-4 overflow-auto w-full no-scrollbar  ">
           {fits.slice(0,4).map((fit, index) => (
             <div key={index} className="relative group overflow-hidden cursor-pointer flex-shrink-0"
             onClick={()=>handleClick(fit)}
