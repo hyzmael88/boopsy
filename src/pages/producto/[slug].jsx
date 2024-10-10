@@ -89,7 +89,7 @@ export default function Producto({ producto }) {
             />
           </div>
           <div className="mt-4">
-            <p className="underline font-gabarito text-[16px] text-black cursor-pointer">Guía de tallas</p>
+            <p className="underline font-gabarito text-[16px] text-black cursor-pointer mb-4">Guía de tallas</p>
             <div className="w-full flex gap-4">
               <select
                 className="w-[208px] h-[38px] border-[1px] border-black"
