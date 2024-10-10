@@ -26,7 +26,15 @@ function Filtros({ productos, setFiltros, mostrarFiltros, mostrarFiltrosMovil, s
 
   console.log(colorOptions)
 
-  
+  console.log(selectedFit)
+
+  useEffect(() => {
+    if (selectedFit) {
+
+      setFiltros((prev) => ({ ...prev, fit: [selectedFit] }));
+       
+    }
+  }, [selectedFit]);
 
 
   // Funciones para manejar cambios en los filtros

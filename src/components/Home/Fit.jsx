@@ -2,9 +2,23 @@ import { useEffect, useState } from "react";
 import { client } from '@/sanity/lib/client';
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 
-const Categories = () => {
+const Fit = () => {
+
+   const router= useRouter() 
+
+  const handleClick = (fit) => {
+    if (fit && fit.name) {
+      router.push({
+        pathname: '/Shop',
+        query: { fit: fit.name },
+      });
+    } else {
+      console.error('Fit name is undefined or empty');
+    }
+  }; 
    
     const [fits, setFits] = useState([])
 
@@ -25,8 +39,6 @@ const Categories = () => {
   }
   , []);
 
-  console.log(fits)
-  console.log(fits[0]?.image?.asset?.url)
   
     return (
       <section className="py-12">
@@ -34,8 +46,8 @@ const Categories = () => {
         <div className="flex lg:justify-center gap-6 px-4 overflow-auto w-full  ">
           {fits.slice(0,4).map((fit, index) => (
             <div key={index} className="relative group overflow-hidden cursor-pointer flex-shrink-0"
-            onClick={() => router.push(`/Shop/${fit.name}`)}
-            >
+            onClick={()=>handleClick(fit)}
+           >
               <Image 
               width={500}
               height={500}
@@ -54,5 +66,5 @@ const Categories = () => {
     );
   };
   
-  export default Categories;
+  export default Fit;
   

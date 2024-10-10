@@ -1,4 +1,6 @@
 // components/Footer.js
+import Image from 'next/image';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { FaFacebook, FaInstagram, FaTiktok } from 'react-icons/fa';
 
@@ -10,14 +12,15 @@ const Footer = () => {
   return (
     <>
     {router.pathname.startsWith("/Login") || router.pathname.startsWith("/Dashboard") ? null : (
-    <footer className="bg-black text-white py-10 mt-4">
+    <footer className="bg-black text-white py-10 mt-4 font-gabarito">
       <div className="max-w-7xl mx-auto px-4">
         {/* Sección superior */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="flex flex-col space-y-2 text-center lg:text-start">
-            <a href="#" className="text-white hover:text-gray-400">Inicio</a>
-            <a href="#" className="text-white hover:text-gray-400">Acerca de</a>
-            <a href="#" className="text-white hover:text-gray-400">Tienda</a>
+            <Image src="/assets/logob.svg" width={150} height={50} className='mb-4' alt="Logo Boopsy" />
+            <Link href="/" className="text-white hover:text-gray-400">Inicio</Link>
+            <Link href="/About" className="text-white hover:text-gray-400">Acerca de</Link>
+            <Link href="/Shop" className="text-white hover:text-gray-400">Tienda</Link>
           </div>
 
           <div className="text-gray-400 text-[10px] text-center lg:text-start flex flex-col gap-[8px]">
@@ -34,9 +37,9 @@ const Footer = () => {
         <div className="md:flex justify-between items-center text-sm text-gray-400">
           <div className="hidden lg:flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-6">
             <span>Boopsy - México, 2024</span>
-            <a href="#" className="hover:text-gray-200">Tabla de tallas</a>
-            <a href="#" className="hover:text-gray-200">Aviso de Privacidad</a>
-            <a href="#" className="hover:text-gray-200">Políticas de envío y devoluciones</a>
+            <Link href="/" className="hover:text-gray-200">Tabla de tallas</Link>
+            <Link href="Privacidad" className="hover:text-gray-200">Aviso de Privacidad</Link>
+            <Link href="Terminos" className="hover:text-gray-200">Políticas de envío y devoluciones</Link>
           </div>
 
           {/* Redes sociales */}
@@ -52,7 +55,7 @@ const Footer = () => {
             </a>
           </div>
           <div className="lg:hidden border-t border-gray-700 my-6"></div>
-            <p className='text-center'>Boopsy - México, {year}</p>
+            <p className='lg:hidden text-center'>Boopsy - México, {year}</p>
         </div>
       </div>
     </footer>
