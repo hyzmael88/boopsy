@@ -39,5 +39,16 @@ export default {
           },
         ],
       },
+      {
+        name: "trackingNumber",
+        type: "string",
+        title: "Tracking Number",
+
+      },
+      {
+        name:"estadoPedido",
+        type:"string",
+        title:"Estado del Pedido",
+      }
     ],
   };
