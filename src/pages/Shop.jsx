@@ -71,7 +71,9 @@ function Shop() {
     const tallaMatch =
       Array.isArray(filtros.tallas) && (filtros.tallas.length === 0 || producto.tallas.some((t) => filtros.tallas.includes(t.talla)));
     const colorMatch =
-      Array.isArray(filtros.colores) && (filtros.colores.length === 0 || filtros.colores.includes(producto.color.nombre));
+      Array.isArray(filtros.colores) && (filtros.colores.length === 0 || filtros.colores.includes(producto.color.name));
+      console.log(producto)
+
   
     return fitMatch && tallaMatch && colorMatch;
   });
