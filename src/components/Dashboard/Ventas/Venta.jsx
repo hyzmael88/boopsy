@@ -6,6 +6,7 @@ import { send } from "@emailjs/browser";
 import emailjs from '@emailjs/browser';
 import Image from "next/image";
 import { FaEdit, FaTrash } from 'react-icons/fa';
+import TrackingModal from './TrackingModal';
 
 function Venta({ venta, handleDeleteVenta }) {
 
@@ -17,6 +18,8 @@ function Venta({ venta, handleDeleteVenta }) {
   const [estado, setEstado] = useState("Pendiente");
   const [direccion, setDireccion] = useState(null);
   const [isModalOpen, setModalOpen] = useState(false);
+  const [isTrackingModalOpen, setIsTrackingModalOpen] = useState(false);
+  const [trackingNumber, setTrackingNumber] = useState('');
 
 const fetchStripeSession = async (sessionId) => {
   try {
@@ -72,21 +75,37 @@ useEffect(() => {
   const handleEstadoChange = (e) => {
     const newEstado = e.target.value;
     setEstado(newEstado);
-    sendEmail(newEstado);
-    updateVenta(venta._id, { ...venta, envio: { ...venta.envio, estadoPedido: newEstado } });
+
+    if (newEstado === "enviado") {
+      setIsTrackingModalOpen(true);
+    } else {
+      sendEmail(newEstado);
+      updateVenta(venta._id, { ...venta, envio: { ...venta.envio, estadoPedido: newEstado } });
+    }
   };
 
-  const sendEmail = (estado) => {
+  const handleTrackingSubmit = (number) => {
+    setTrackingNumber(number);
+    sendEmail('enviado', number);  // Aquí pasamos el número de seguimiento
+    updateVenta(venta._id, { ...venta, envio: { ...venta.envio, estadoPedido: 'enviado', trackingNumber: number } });
+  };
+
+  const sendEmail = (estado, trackingNumber = '') => {
     const templateParams = {
       cliente_correo: venta?.customer_email,
       estado,
-      facebook: "https://www.facebook.com/auroelia",
-      instagram: "https://www.instagram.com/auroelia.na",
-      whatsapp: "https://wa.me/+525626306790?text=Tengo%20una%20duda"
+      tracking_number: trackingNumber,  // Incluir la guía de seguimiento
+      facebook: "https://www.facebook.com/boopsy_jeans",
+      instagram: "https://www.instagram.com/boopsy_jeans",
+      whatsapp: "https://wa.me/+525540252669?text=Tengo%20una%20duda"
     };
 
     const serviceID = process.env.NEXT_PUBLIC_EMAIL_SERVICE_ID;
-    const templateID = process.env.NEXT_PUBLIC_EMAIL_TEMPLATE_PEDIDO_ESTADO_ID;
+    const templateID = estado === "enviado" 
+    ? process.env.NEXT_PUBLIC_EMAIL_TEMPLATE_PEDIDO_ENVIADO_ID 
+    :
+    estado === "finalizado" &&
+    process.env.NEXT_PUBLIC_EMAIL_TEMPLATE_PEDIDO_FINALIZADO_ID;
     const userID = process.env.NEXT_PUBLIC_EMAIL_TEMPLATE_PUBLIC_KEY_ID;
 
     emailjs.send(serviceID, templateID, templateParams, userID)
@@ -148,7 +167,6 @@ useEffect(() => {
             className="border rounded-md p-1"
           >
             <option value="pendiente">Pendiente</option>
-            <option value="confirmado">Confirmado</option>
             <option value="enviado">Enviado</option>
             <option value="finalizado">Finalizado</option>
           </select>
@@ -159,17 +177,11 @@ useEffect(() => {
         </div>
         </div>
 
-       
-
-        {/* Modal para editar la venta */}
-        {isModalOpen && (
-          <VentasModal
-            isOpen={isModalOpen}
-            close={closeModal}
-            venta={venta}
-            handleGuardar={(updatedVenta) => updateVenta(venta._id, updatedVenta)}
-          />
-        )}
+        <TrackingModal
+        isOpen={isTrackingModalOpen}
+        close={() => setIsTrackingModalOpen(false)}
+        onSubmit={handleTrackingSubmit}
+      />
       </div>
     </div>
   );

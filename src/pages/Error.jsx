@@ -11,7 +11,7 @@ const Error = () => {
           Hubo un problema con tu pago. Por favor, revisa tu información o intenta de nuevo.
         </p>
         <div className="flex flex-col gap-4">
-          <Link href="/cart">
+          <Link href="/Cart">
             <button className="inline-block bg-black text-white px-20 py-2  text-lg lg:text-xl font-anton transition duration-300 uppercase rounded-[87px]">
               Volver al Carrito
             </button>
