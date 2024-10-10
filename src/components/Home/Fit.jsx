@@ -7,7 +7,7 @@ import { useRouter } from "next/router";
 
 const Fit = () => {
 
-   const router= useRouter() 
+   const router = useRouter();	
 
   const handleClick = (fit) => {
     if (fit && fit.name) {
