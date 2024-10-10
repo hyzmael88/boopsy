@@ -12,7 +12,8 @@ import {
   FaBars,
   FaRegCalendarAlt,
   FaGlassCheers,
-  FaStar
+  FaStar,
+  FaTimes
 } from "react-icons/fa";
 import Ventas from "./Ventas";
 import { AppContext } from "@/context/AppContext";
@@ -100,25 +101,22 @@ const Dashboard = () => {
       <div className="xl:hidden flex flex-row justify-between   w-full h-[100px] items-center px-8     ">
       <div>
       <Image
-        src='/assets/logonav.png' width={100} height={100} alt='logo' />
+        src='/assets/logo.svg' width={100} height={100} alt='logo' />
       </div> 
       <div>
 
       {
         !active ?
         
-        <Image
-        width={30} height={30}
-        src="/assets/icons/menuMob.svg"
-        alt="menu movil"
-        className={!active ? "flex text-5xl   cursor-pointer text-[#d3cbc0] z-20" : "hidden"}
+        <FaBars
+        
+        className={!active ? "flex text-xl   cursor-pointer  z-20" : "hidden"}
         onClick={()=>setActive(true)}
         />
         :
-        <Image src="/assets/icons/navbar/close.svg" width={30} height={30}
-        alt="close menu movil"
+        <FaTimes
         onClick={() => setActive(false)}
-        className={active ? "flex text-5xl  cursor-pointer text-[#d3cbc0] z-20" : "hidden"}
+        className={active ? "flex text-xl  cursor-pointer z-20" : "hidden"}
         />
       }
       </div>
@@ -137,7 +135,7 @@ const Dashboard = () => {
            
             
             <li
-              className="text-[15px] font-medium hover:text-[#E39C9D] hover:scale-125 transition-all duration-300"
+              className="text-[15px] font-medium  hover:scale-125 transition-all duration-300"
               onClick={() => {
                 setActive(false);
                 handleSidebarClick("Ventas");
@@ -150,10 +148,10 @@ const Dashboard = () => {
             </li>
             <li>
            <a
-            href="https://auroelia.com/studio/structure/producto"
+            href="https://boopsy.vercel.app/studio/structure/producto"
             target="_blank"
             rel="noopener noreferrer"
-             className="text-[15px] font-medium hover:text-[#E39C9D] hover:scale-125 transition-all duration-300"
+             className="text-[15px] font-medium hover:scale-125 transition-all duration-300"
              onClick={() => {
                setActive(false)
                
@@ -169,7 +167,7 @@ const Dashboard = () => {
           
            
             <li
-              className="text-[15px] font-medium hover:text-[#E39C9D] hover:scale-125 transition-all duration-300"
+              className="text-[15px] font-medium hover:scale-125 transition-all duration-300"
               onClick={() => {
                 setActive(false);
                 logout()
