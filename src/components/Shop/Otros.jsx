@@ -34,7 +34,7 @@ function Otros({ fit }) {
 
   return (
     <div className="mt-12">
-      <h2 className="text-[60px] font-anton text-center mb-4 uppercase">Productos Similares</h2>
+      <h2 className="text-[30px] font-anton text-center mb-4 uppercase">Productos Similares</h2> 
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         {otrosProductos.map((producto) => (
           <Link key={producto.slug.current} href={`/producto/${producto.slug.current}`}>

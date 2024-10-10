@@ -15,7 +15,7 @@ const Footer = () => {
     <footer className="bg-black text-white py-10 mt-4 font-gabarito">
       <div className="max-w-7xl mx-auto px-4">
         {/* Sección superior */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1  gap-6">
           <div className="flex flex-col space-y-2 items-center lg:items-start text-center lg:text-start">
             <Image src="/assets/logob.svg" width={150} height={50} className='mb-4' alt="Logo Boopsy" />
             <Link href="/" className="text-white hover:text-gray-400">Inicio</Link>
@@ -34,7 +34,7 @@ const Footer = () => {
         <div className="hidden lg:block border-t border-gray-700 my-6"></div>
 
         {/* Sección inferior */}
-        <div className="md:flex justify-between items-center text-sm text-gray-400">
+        <div className="lg:flex justify-between items-center text-sm text-gray-400">
           <div className="hidden lg:flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-6">
             <span>Boopsy - México, 2024</span>
             <Link href="/" className="hover:text-gray-200">Tabla de tallas</Link>
@@ -43,7 +43,7 @@ const Footer = () => {
           </div>
 
           {/* Redes sociales */}
-          <div className="flex justify-center lg:justify-start space-x-4 mt-4 md:mt-0">
+          <div className="flex justify-center lg:justify-start space-x-4 mt-4 lg:mt-0">
             <a href="#" className="text-white hover:text-gray-400">
               <FaFacebook size={24} />
             </a>
