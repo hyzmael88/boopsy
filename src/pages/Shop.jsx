@@ -229,7 +229,14 @@ function Shop() {
           setFiltros={setFiltros}
           selectedFit={selectedFit}
         />
-        <Productos productosFiltrados={productosOrdenados} />
+        {
+          productosFiltrados.length > 0 ?
+          <Productos productosFiltrados={productosOrdenados} />
+          :
+          <div className="h-[70vh] w-full flex flex-col justify-center items-center text-center">
+          <p>No hay productos que coincidan con los filtros seleccionados</p>
+          </div>
+        }
       </div>
     </div>
   );
