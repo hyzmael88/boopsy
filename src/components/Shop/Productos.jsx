@@ -9,8 +9,8 @@ function Productos({ productosFiltrados }) {
   return (
     <div className="w-full md:w-4/5 h-full p-4 grid grid-cols-2 lg:grid-cols-4  gap-4">
       {productosFiltrados.map((producto) => (
-         <Link key={producto.slug} href={`/producto/${producto.slug.current}`}>
-        <div key={producto.slug} className="w-full h-full border  cursor-pointer">
+         <Link key={producto.slug.current} href={`/producto/${producto.slug.current}`}>
+        <div  className="w-full h-full border  cursor-pointer">
             {console.log(producto)}
             <div className=' h-[343px] flex-shrink-0'>
           <Image

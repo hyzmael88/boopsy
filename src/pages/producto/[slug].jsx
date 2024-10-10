@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useContext, useState } from "react";
 import { client } from "@/sanity/lib/client";
 import { Dialog } from "@headlessui/react"; // Librería para modal
+import { toast } from 'react-toastify';
 
 export default function Producto({ producto }) {
   const { addToCart } = useContext(AppContext);
@@ -26,10 +27,27 @@ export default function Producto({ producto }) {
 
   const handleAddToCart = () => {
     if (!size) {
-      alert("Por favor selecciona una talla");
+      toast.error("Por favor selecciona una talla", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
       return;
     }
     addToCart(producto, size, qty);
+    toast.success("Producto agregado al carrito", {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
   };
 
   return (

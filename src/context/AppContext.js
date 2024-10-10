@@ -52,16 +52,14 @@ const addToCart = (product, size, qty) => {
   setCart((currentCart) => {
     // Buscar el producto en el carrito
     const index = currentCart.findIndex(
-      (item) => item.product._id === product._id && item.size === size
+      (item) => item.product.slug.current === product.slug.current && item.size === size
     );
 
     // Si el producto ya está en el carrito, incrementar su cantidad
     if (index !== -1) {
-      const newCart = [...currentCart];
-      newCart[index] = {
-        ...newCart[index],
-        qty: newCart[index].qty + qty,
-      };
+      const newCart = currentCart.map((item, i) =>
+        i === index ? { ...item, qty: item.qty + qty } : item
+      );
       return newCart;
     }
 

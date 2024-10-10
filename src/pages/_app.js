@@ -4,6 +4,9 @@ import SocialMedia from "@/components/SocialMedia";
 import Worldwide from "@/components/Envio";
 import { Anton } from '@next/font/google';
 import { AppProvider } from "@/context/AppContext";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 import "@/styles/globals.css";
 
@@ -21,6 +24,7 @@ export default function App({ Component, pageProps }) {
     <SocialMedia/>
     <Navbar />
      <Component {...pageProps} />
+     <ToastContainer />
      <Footer />
     </div>
     </AppProvider>

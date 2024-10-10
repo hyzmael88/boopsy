@@ -77,13 +77,13 @@ export default function Cart() {
         <div className="flex flex-col">
           {cartItems.map((item, index) => (
             <div
-              key={item.id}
+              key={index}
               className="flex flex-row items-center  border-b py-4"
             >
               <div className="w-[100px] h-[148px] lg:w-20 lg:h-20">
                 <Image
                   src={item.product.imagenes[0].asset.url}
-                  alt={item.nombre}
+                  alt={item.product.nombre}
                   width={100}
                   height={100}
                   className="object-cover"
