@@ -38,7 +38,7 @@ function Navbar() {
 
       {/* Logo */}  
       <div className='relative z-10'>
-        <Image src="/assets/logo.png" width={150} height={50} alt="Logo" />
+        <Image src="/assets/logo.svg" width={150} height={50} alt="Logo" />
       </div>
 
       {/* Enlaces del centro para versión de escritorio */}
@@ -71,7 +71,7 @@ function Navbar() {
         
       {/* Logo */}  
       <div className='w-full flex justify-center mt-[63px]'>
-        <Image src="/assets/logo.png" width={278} height={44} alt="Logo" />
+        <Image src="/assets/logo.svg" width={278} height={44} alt="Logo" />
       </div>
 
         {/* Enlaces del menú móvil */}

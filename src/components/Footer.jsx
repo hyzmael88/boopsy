@@ -16,7 +16,7 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto px-4">
         {/* Sección superior */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="flex flex-col space-y-2 text-center lg:text-start">
+          <div className="flex flex-col space-y-2 items-center lg:items-start text-center lg:text-start">
             <Image src="/assets/logob.svg" width={150} height={50} className='mb-4' alt="Logo Boopsy" />
             <Link href="/" className="text-white hover:text-gray-400">Inicio</Link>
             <Link href="/About" className="text-white hover:text-gray-400">Acerca de</Link>

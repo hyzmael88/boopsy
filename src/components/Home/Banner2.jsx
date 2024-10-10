@@ -12,7 +12,7 @@ function Banner2() {
           alt="banner"
           className="object-cover w-full h-full"
         />
-        <div className="w-full flex flex-col  justify-center items-center absolute z-10">
+        <div className="w-full flex flex-col  justify-center items-center absolute z-10 pb-16 xl:pb-9">
           <h1 className="text-[30px] sm:text-[40px] lg:text-[50px] xl:text-[80px] leading-[40px] sm:leading-[50px] xl:leading-[81px] text-center whitespace-pre-line font-anton pt-32">
             {`ENVÍOS A 
             TODO MÉXICO`}
@@ -52,7 +52,7 @@ function Banner2() {
                 TRASCIENDE
             `}
           </h1>
-          <p className="text-center text-[16px] lg::text-[20px] max-w-sm mx-auto mt-4">
+          <p className="text-center text-[16px] lg:text-[20px] max-w-sm mx-auto mt-4">
           Descubre cómo vamos más allá de las tendencias,
           fusionando lo mejor de lo formal, casual y moderno.
           </p>

@@ -29,7 +29,7 @@ const Subscribe = () => {
     <section className="py-12 bg-white">
       <div className="max-w-3xl mx-auto text-center">
         <h2 className="text-[20px] lg:text-[60px] text-center font-anton uppercase ">SUSCRÍBETE</h2>
-        <p className="mt-4 lg:mt-0 whitespace-pre-line font-gabarito">
+        <p className="mt-0 whitespace-pre-line font-gabarito">
           {`
             Recibe novedades, obtén recompensas
             y descubre nuevos lanzamientos antes que nadie
