@@ -30,11 +30,8 @@ function Shop() {
 
 
   const [productos, setProductos] = useState([]);
-  const [filtros, setFiltros] = useState({
-    fit: [],
-    talla: "",
-    color: "",
-  });
+  const [filtros, setFiltros] = useState({ fit: [], tallas: [], colores: [] });
+
 
   useEffect(() => {
     // Obtener productos desde Sanity usando la consulta GROQ corregida
@@ -68,16 +65,20 @@ function Shop() {
     fetchProductos();
   }, []);
 
-  // Filtrar productos basados en los filtros seleccionados
   const productosFiltrados = productos.filter((producto) => {
     const fitMatch =
-      filtros.fit.length === 0 || filtros.fit.includes(producto.fit);
+      Array.isArray(filtros.fit) && (filtros.fit.length === 0 || filtros.fit.includes(producto.fit));
     const tallaMatch =
-      !filtros.talla || producto.tallas.some((t) => t.talla === filtros.talla);
-    const colorMatch = !filtros.color || producto.color === filtros.color;
-
+      Array.isArray(filtros.tallas) && (filtros.tallas.length === 0 || producto.tallas.some((t) => filtros.tallas.includes(t.talla)));
+    const colorMatch =
+      Array.isArray(filtros.colores) && (filtros.colores.length === 0 || filtros.colores.includes(producto.color.nombre));
+  
     return fitMatch && tallaMatch && colorMatch;
   });
+
+  console.log(filtros.colores)
+  
+  
 
   const [filtrosOpen, setFiltrosOpen] = useState(false);
 
@@ -201,7 +202,7 @@ function Shop() {
       </div>
       {/* filtros móvil */}
       <div
-        className={`fixed top-0 left-0 w-full h-full pt-[100px] bg-white z-50 p-6 transition-transform transform ${mostrarFiltrosMovil ? "translate-x-0" : "-translate-x-full"}`}
+        className={`fixed top-0 left-0 w-full h-full pt-[100px] bg-white z-50 p-6 transition-transform transform overflow-auto ${mostrarFiltrosMovil ? "translate-x-0" : "-translate-x-full"}`}
       >
         {/* Botón para cerrar el menú */}
         <div className="flex justify-start">

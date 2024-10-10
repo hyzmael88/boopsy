@@ -1,43 +1,52 @@
-// components/Shop/Filtros.js
 import React, { useState, useEffect } from 'react';
+import { client } from '@/sanity/lib/client';
 
 function Filtros({ productos, setFiltros, mostrarFiltros, mostrarFiltrosMovil, selectedFit }) {
-
-  console.log(productos)
   // Estados para los filtros
   const [fitOptions, setFitOptions] = useState([]);
   const [tallaOptions, setTallaOptions] = useState([]);
   const [colorOptions, setColorOptions] = useState([]);
+  const [selectedTallas, setSelectedTallas] = useState([]);
+  const [selectedColors, setSelectedColors] = useState([]);
 
-  // Extract dynamic options from the products
+
+  // Fetch fit and color options from Sanity
   useEffect(() => {
-    const fits = [...new Set(productos.map((p) => p.fit))]; // Get unique fits
+    const fetchOptions = async () => {
+      const fitsQuery = `*[_type == "fit"]{name}`;
+      const colorsQuery = `*[_type == "color"]{name, hex}`;
+
+      const [fits, colors] = await Promise.all([
+        client.fetch(fitsQuery),
+        client.fetch(colorsQuery),
+      ]);
+
+      setFitOptions(fits);
+      setColorOptions(colors);
+    };
+
+    fetchOptions();
+  }, []);
+
+  // Extract unique talla options from products
+  useEffect(() => {
     const tallas = [
       ...new Set(productos.flatMap((p) => p.tallas.map((t) => t.talla))),
-    ]; // Get unique tallas
-    const colores = [
-      ...new Set(productos.flatMap((p) => p.color)),
-    ]; // Get unique colores
+    ]; // Obtener tallas únicas
 
-    setFitOptions(fits);
     setTallaOptions(tallas);
-    setColorOptions(colores);
   }, [productos]);
-
-  console.log(colorOptions)
-
-  console.log(selectedFit)
 
   useEffect(() => {
     if (selectedFit) {
-
-      setFiltros((prev) => ({ ...prev, fit: [selectedFit] }));
-       
+      setFiltros((prev) => ({
+        ...prev,
+        fit: [selectedFit],
+      }));
     }
-  }, [selectedFit]);
+  }, [selectedFit, setFiltros]);
 
-
-  // Funciones para manejar cambios en los filtros
+  // Función para manejar los cambios en el fit
   const handleFitChange = (e) => {
     const { value, checked } = e.target;
     setFiltros((prev) => ({
@@ -48,28 +57,45 @@ function Filtros({ productos, setFiltros, mostrarFiltros, mostrarFiltrosMovil, s
     }));
   };
 
-  const handleTallaChange = (e) => {
-    setFiltros((prev) => ({ ...prev, talla: e.target.value }));
+  const handleTallaChange = (event) => {
+    const { value, checked } = event.target;
+    setSelectedTallas((prevSelectedTallas) =>
+      checked
+        ? [...prevSelectedTallas, value]
+        : prevSelectedTallas.filter((talla) => talla !== value)
+    );
   };
 
-  const handleColorChange = (e) => {
-    setFiltros((prev) => ({ ...prev, color: e.target.value }));
+  const handleColorChange = (event) => {
+    const { value, checked } = event.target;
+    setSelectedColors((prevSelectedColors) =>
+      checked
+        ? [...prevSelectedColors, value]
+        : prevSelectedColors.filter((color) => color !== value)
+    );
   };
+
+useEffect(() => {
+  setFiltros((prev) => ({
+    ...prev,
+    tallas: selectedTallas,
+    colores: selectedColors,
+  }));
+}, [selectedTallas, selectedColors, setFiltros]);
 
   return (
-    <div className={` ${mostrarFiltrosMovil ? "block lg:hidden" : "hidden"} ${mostrarFiltros && "hidden lg:block w-1/5 p-4" }  font-gabarito`}>
+    <div className={` ${mostrarFiltrosMovil ? "block lg:hidden " : "hidden"} ${mostrarFiltros && "hidden lg:block w-1/5 p-4"} font-gabarito `}>
       {/* Filtro de Fit */}
       <div className="mb-4">
         <h3 className=" font-gabarito font-bold mb-2 border-b-[1px] border-black/20">Fit</h3>
-        
         {fitOptions.map((fitOption) => (
-          <label key={fitOption} className="block mb-2">
+          <label key={fitOption.name} className="block mb-2">
             <input
               type="checkbox"
-              value={fitOption}
+              value={fitOption.name}
               onChange={handleFitChange}
             />
-            <span className="ml-2">{fitOption}</span>
+            <span className="ml-2">{fitOption.name}</span>
           </label>
         ))}
       </div>
@@ -94,17 +120,20 @@ function Filtros({ productos, setFiltros, mostrarFiltros, mostrarFiltrosMovil, s
       <div className="mb-4">
         <h3 className="font-gabarito font-bold mb-2 border-b-[1px] border-black/20">Color</h3>
         {colorOptions.map((colorOption) => (
-          <label key={colorOption} className="flex gap-1 mb-2">
+          <label key={colorOption.name} className="flex gap-1 mb-2">
             <input
               type="checkbox"
-              value={colorOption
-              }
+              value={colorOption.name}
               name="color"
               onChange={handleColorChange}
             />
-            <div className="ml-2 font-gabarito text-[16px] flex gap-2"> <div className='w-[20px] h-[20px] rounded-full'
-            style={{ backgroundColor: colorOption.hex }}
-            /> {colorOption.name}</div>
+            <div className="ml-2 font-gabarito text-[16px] flex gap-2">
+              <div
+                className="w-[20px] h-[20px] rounded-full"
+                style={{ backgroundColor: colorOption.hex }}
+              />{" "}
+              {colorOption.name}
+            </div>
           </label>
         ))}
       </div>
