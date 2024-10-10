@@ -96,9 +96,9 @@ function Navbar() {
 
           {/* Enlaces de políticas */}
           <div className="flex flex-col mt-6 text-sm text-black font-gabarito">
-            <Link href="/size-guide" onClick={toggleMenu}>Tabla de tallas</Link>
-            <Link href="/privacy-policy" onClick={toggleMenu}>Aviso de Privacidad</Link>
-            <Link href="/shipping-policy" onClick={toggleMenu}>Políticas de envío y devoluciones</Link>
+            <Link href="/" onClick={toggleMenu}>Tabla de tallas</Link>
+            <Link href="/Privacidad" onClick={toggleMenu}>Aviso de Privacidad</Link>
+            <Link href="/Terminos" onClick={toggleMenu}>Políticas de envío y devoluciones</Link>
           </div>
         </div>
       </div>
