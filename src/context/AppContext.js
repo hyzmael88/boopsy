@@ -188,17 +188,27 @@ const addToCart = (product, size, qty) => {
     }
 
     // Update
-const updateVenta = async (ref, updatedData) => {
-  try {
-    await client
-      .patch(ref)
-      .set(updatedData)
-      .commit(); // Confirmar los cambios
-    console.log("Venta actualizada con éxito");
-  } catch (error) {
-    console.error("Hubo un error al actualizar la venta", error);
-  }
-};
+
+    const updateVenta = async (ref, updatedData) => {
+      try {
+        const response = await fetch('/api/updateVenta', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ ref, updatedData }),
+        });
+    
+        if (!response.ok) {
+          throw new Error('Error al actualizar la venta');
+        }
+    
+        const data = await response.json();
+        console.log(data.message);
+      } catch (error) {
+        console.error('Hubo un error al actualizar la venta', error);
+      }
+    };
 
     // Delete
     const deleteVenta = async (ref) => {
