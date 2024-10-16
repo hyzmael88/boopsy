@@ -42,7 +42,7 @@ export default async function handler(req, res) {
             display_name: 'Envío Estándar',
             type: 'fixed_amount',
             fixed_amount: {
-              amount: 50000, // 500.00 MXN (50000 centavos)
+              amount: 15000, // 150.00 MXN (15000 centavos)
               currency: 'mxn',
             },
             delivery_estimate: {
