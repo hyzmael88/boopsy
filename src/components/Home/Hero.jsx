@@ -5,7 +5,10 @@ const Hero = () => {
     return (
       <section className="relative h-screen max-h-[425px] lg:max-h-[608px] realitve " >
         <Image src={'/assets/home/hero.png'}  layout="fill" objectFit="cover" alt="hero" />
-        <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center"/>
+        {/* <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center"/> */}
+        <div className="w-full h-full absolute flex justify-center items-center  pb-16 md:pb-32 lg:pb-16">
+          <Image src={'/assets/home/boopsy.png'} width={500} height={200} className="object-contain w-[204px] h-[70px] lg:w-[500px] lg:h-[135px] " alt="boopsylogo"/>
+        </div>
           <div className=" absolute bottom-12 left-0 right-0 mx-auto text-center text-white">
             <h1 className="text-[40px] md:text-7xl animate-fade-in uppercase font-anton">Unleash Your Style</h1>
             <p className="text-[12px] md:text-xl max-w-md mx-auto whitespace-pre-line">
