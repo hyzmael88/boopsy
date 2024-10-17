@@ -9,7 +9,13 @@ export default {
         title: 'Nombre de la Categoría',
         type: 'string',
         validation: Rule => Rule.required().error('El nombre de la categoría es obligatorio.')
-      }
+      },
+      {
+        name: 'imagenTabla',
+        title: 'Imagen de la Tabla',
+        type: 'image',
+
+      }      
     ]
   };
   

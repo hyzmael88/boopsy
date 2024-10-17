@@ -61,7 +61,13 @@ export default async function handler(req, res) {
    
     try {
       const session = await stripe.checkout.sessions.create({
-        payment_method_types: ['card'],
+        payment_method_options: {
+          card: {
+            installments: {
+             enabled: true,
+            },
+          },
+        },
         line_items: items.map(item => ({
           price_data: {
             currency: 'mxn',
@@ -84,9 +90,6 @@ export default async function handler(req, res) {
         },
         shipping_options: shippingOptions,
         
-        
-        
-       
       });
 
       res.status(200).json({ id: session.id });
