@@ -60,8 +60,8 @@ export default function Producto({ producto }) {
             <Image
               src={selectedImage}
               alt={producto.nombre}
-              width={500}
-              height={500}
+              width={1500}
+              height={1500}
               className={`w-full h-auto transition-transform duration-300 ${
                 isZoomed ? "scale-150" : ""
               } hover:cursor-zoom-in`}
@@ -81,8 +81,8 @@ export default function Producto({ producto }) {
                 key={index}
                 src={img.asset.url}
                 alt={`Imagen ${index + 1}`}
-                width={100}
-                height={100}
+                width={500}
+                height={500}
                 className={`w-full h-auto object-cover cursor-pointer border ${
                   selectedImage === img.asset.url ? "border-black" : "border-transparent"
                 }`}
