@@ -95,6 +95,7 @@ export default function Producto({ producto }) {
         {/* Información del producto */}
         <div>
           <h1 className="text-2xl font-anton uppercase text-[23px]">{producto.nombre}</h1>
+          <p className=" font-gabarito text-[12px] text-black/40  mb-">SKU: {producto.sku}</p>
           <p className="text-lg font-gabarito text-[20px]">{producto.fit}</p>
           <p className="text-[20px] font-bold font-gabarito">${producto.precio} MXN</p>
 
@@ -194,6 +195,7 @@ export async function getServerSideProps(context) {
     nombre,
     slug,
     precio,
+    sku,
     "fit": fit->name,
     "color": color->hex,
     tallas[] {

@@ -120,7 +120,8 @@ export default {
       name: 'sku',
       title: 'SKU',
       type: 'string',
-      description: 'Código único del producto para gestionar el inventario.'
+      description: 'Código único del producto para gestionar el inventario.',
+      validation: Rule => Rule.required().error('La descripción del producto es obligatoria.')
     },
     {
       name: 'descripcion',
@@ -131,9 +132,9 @@ export default {
     },
     {
       name: 'materiales',
-      title: 'Materiales y Cuidados',
+      title: 'Materiales',
       type: 'text',
-      description: 'Detalles sobre los materiales y las instrucciones de cuidado del producto.',
+      description: 'Detalles sobre los materiales',
       validation: Rule => Rule.required().error('Los materiales y cuidados son obligatorios.')
     },
     {
