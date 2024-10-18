@@ -3,17 +3,19 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { client } from '@/sanity/lib/client';
 
-function Otros({ fit }) {
+function Otros({ fit, color }) {
   const [otrosProductos, setOtrosProductos] = useState([]);
+  console.log(color)
 
   useEffect(() => {
     const fetchOtrosProductos = async () => {
       // Consulta a Sanity para obtener productos con el mismo fit pero excluyendo el producto actual
-      const query = `*[_type == "producto" && fit->name == $fit ] | order(_createdAt desc)[0...4]{
+      const query = `*[_type == "producto" && (fit->name == $fit || color-> hex == $color) ] | order(_createdAt desc)[0...4]{
         nombre,
         slug,
         precio,
         "fit": fit->name,
+        "color": color->hex,
         imagenes[]{
           asset->{
             url
@@ -21,14 +23,14 @@ function Otros({ fit }) {
         }
       }`;
 
-      const otros = await client.fetch(query, { fit });
+      const otros = await client.fetch(query, { fit, color });
       setOtrosProductos(otros);
     };
 
     if (fit) {
       fetchOtrosProductos();
     }
-  }, [fit]);
+  }, [fit, color]);
 
   console.log(otrosProductos)
 

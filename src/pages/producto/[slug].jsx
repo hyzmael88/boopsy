@@ -1,7 +1,7 @@
 import Otros from "@/components/Shop/Otros";
 import { AppContext } from "@/context/AppContext";
 import Image from "next/image";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { client } from "@/sanity/lib/client";
 import { Dialog } from "@headlessui/react"; // Librería para modal
 import { toast } from 'react-toastify';
@@ -15,6 +15,11 @@ export default function Producto({ producto }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(true); // Estado para el loading
 
+  // Actualizar `selectedImage` cuando `producto` cambie
+  useEffect(() => {
+    setSelectedImage(producto?.imagenes[0]?.asset.url || '');
+    setIsLoading(true); // Reiniciar el estado de carga cuando se cambia el producto
+  }, [producto]);
 
   // Abrir/Cerrar Modal
   const toggleModal = () => {
@@ -70,7 +75,7 @@ export default function Producto({ producto }) {
 
             {/* Imagen principal con zoom */}
             <Image
-            
+              key={producto.slug.current}
               src={selectedImage}
               alt={producto.nombre}
               width={1500}
@@ -179,7 +184,7 @@ export default function Producto({ producto }) {
       </div>
 
       {/* Otros productos */}
-      <Otros fit={producto.fit} />
+      <Otros fit={producto.fit} color={producto.color} />
 
       {/* Modal de imagen ampliada */}
       <Dialog open={isModalOpen} onClose={toggleModal} className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-75">
