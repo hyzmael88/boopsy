@@ -8,7 +8,6 @@ function DatosModal({ isOpen, close, venta, handleGuardar, localVenta, setLocalV
  // Crear una copia de venta en el estado local
 
 
- console.log(venta)
  
  if (!isOpen) return null;
  

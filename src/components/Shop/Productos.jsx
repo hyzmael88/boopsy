@@ -11,7 +11,6 @@ function Productos({ productosFiltrados }) {
       {productosFiltrados.map((producto) => (
          <Link key={producto.slug.current} href={`/producto/${producto.slug.current}`}>
         <div  className="w-full h-full border  cursor-pointer">
-            {console.log(producto)}
             <div className=' h-[343px] flex-shrink-0'>
           <Image
             width={343}
@@ -20,7 +19,6 @@ function Productos({ productosFiltrados }) {
             alt={producto.nombre}
             className=" h-full object-cover"
           />
-          {console.log(producto)}
             </div>
             <div className='py-[18px]'>
           <h3 className="mt-2 font-bold text-center font-gabarito text-[16px]">{producto.fit} - {producto.nombre}</h3>

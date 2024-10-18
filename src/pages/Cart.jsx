@@ -8,7 +8,6 @@ import { loadStripe } from '@stripe/stripe-js';
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY_TEST);
 
-console.log(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY_TEST);
 
 export default function Cart() {
   const { getCart, updateCartItem, removeFromCart, cart } =
@@ -21,7 +20,6 @@ export default function Cart() {
     setCartItems(cart);
   }, [cart]);
 
-  console.log(cartItems);
 
   const handleQtyChange = (productId, size, newQty) => {
     if (newQty < 1) return;

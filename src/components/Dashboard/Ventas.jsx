@@ -22,7 +22,6 @@ function Ventas() {
       .catch((error) => console.error(error));
   }, []);
 
-  console.log(totalItems)
 
   useEffect(() => {
     setTotalItems(ventas.length);
@@ -62,7 +61,6 @@ function Ventas() {
     }
   };
 
-  console.log(currentVentas)
 
   
 

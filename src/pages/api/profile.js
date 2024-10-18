@@ -6,9 +6,7 @@ export default function profileHandler(req, res) {
         return res.status(401).json({ error: 'no-token' })
     }
     try {
-        //console.log(process.env.NEXT_PUBLIC_JWT_SECRET)
         const user = verify(myTokenName, process.env.NEXT_PUBLIC_JWT_SECRET)
-        //console.log(user)
         return res.json({
             name: user.name,
             email: user.email

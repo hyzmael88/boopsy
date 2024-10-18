@@ -31,7 +31,6 @@ function Otros({ fit, color, currentSlug }) {
     }
   }, [fit, color, currentSlug]);
 
-  console.log(otrosProductos)
 
   return (
     <div className="mt-12">

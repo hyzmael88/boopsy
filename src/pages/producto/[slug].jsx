@@ -37,7 +37,6 @@ export default function Producto({ producto }) {
     // Manejar el evento de carga de la imagen
     const handleImageLoad = () => {
       setIsLoading(false); // Ocultar el skeleton cuando la imagen esté cargada
-      console.log("Imagen cargada");
     };
      // Manejar la carga de las miniaturas
   const handleThumbnailLoad = (url) => {

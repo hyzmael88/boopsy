@@ -214,7 +214,6 @@ const addToCart = (product, size, qty) => {
     const deleteVenta = async (ref) => {
       try {
         await 
-        console.log("entre")
         client.delete(ref);
         setVentas(ventas.filter(venta => venta._id !== ref)); // Actualiza el estado para reflejar la venta eliminada
       } catch (error) {

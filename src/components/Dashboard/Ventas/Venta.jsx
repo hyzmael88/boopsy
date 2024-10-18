@@ -10,7 +10,6 @@ import TrackingModal from './TrackingModal';
 
 function Venta({ venta, handleDeleteVenta }) {
 
-  console.log(venta)
 
   const { updateVenta } = useContext(AppContext);
 
