@@ -64,7 +64,7 @@ function Login() {
           <Image
           width={271}
           height={43}
-          src='/assets/Logo.svg' alt='logo' className='w-[271px] h-[43px] object-contain' />
+          src='/assets/logo.svg' alt='logo' className='w-[271px] h-[43px] object-contain' />
           
           <form
             className="w-[80%] flex flex-col md:items-center text-left mt-8"
