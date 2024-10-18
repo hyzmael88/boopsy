@@ -14,6 +14,8 @@ export default function Producto({ producto }) {
   const [selectedImage, setSelectedImage] = useState(producto.imagenes[0].asset.url);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(true); // Estado para el loading
+  const [thumbnailLoading, setThumbnailLoading] = useState({}); // Estado de carga de las miniaturas
+
 
   // Actualizar `selectedImage` cuando `producto` cambie
   useEffect(() => {
@@ -37,6 +39,10 @@ export default function Producto({ producto }) {
       setIsLoading(false); // Ocultar el skeleton cuando la imagen esté cargada
       console.log("Imagen cargada");
     };
+     // Manejar la carga de las miniaturas
+  const handleThumbnailLoad = (url) => {
+    setThumbnailLoading((prev) => ({ ...prev, [url]: false })); // Actualizar el estado de carga de la miniatura
+  };
 
   const handleAddToCart = () => {
     if (!size) {
@@ -98,17 +104,23 @@ export default function Producto({ producto }) {
           {/* Galería de miniaturas */}
           <div className="grid grid-cols-3 gap-4 mt-4">
             {producto.imagenes.map((img, index) => (
-              <Image
-                key={index}
-                src={img.asset.url}
-                alt={`Imagen ${index + 1}`}
-                width={500}
-                height={500}
-                className={`w-full h-auto object-cover cursor-pointer border ${
-                  selectedImage === img.asset.url ? "border-black" : "border-transparent"
-                }`}
-                onClick={() => handleThumbnailClick(img.asset.url)}
-              />
+                            <div key={index} className="relative">
+                            {thumbnailLoading[img.asset.url] && (
+                              <div className="w-full h-[100px] bg-gray-200 animate-pulse"></div>
+                            )}
+               <Image
+                  key={index}
+                  src={img.asset.url}
+                  alt={`Imagen ${index + 1}`}
+                  width={500}
+                  height={500}
+                  className={`w-full h-auto object-cover cursor-pointer border ${
+                    selectedImage === img.asset.url ? "border-black" : "border-transparent"
+                  } ${thumbnailLoading[img.asset.url] ? "hidden" : "block"}`}
+                  onLoadingComplete={() => handleThumbnailLoad(img.asset.url)}
+                  onClick={() => handleThumbnailClick(img.asset.url)}
+                />
+              </div>
             ))}
           </div>
         </div>
@@ -184,7 +196,7 @@ export default function Producto({ producto }) {
       </div>
 
       {/* Otros productos */}
-      <Otros fit={producto.fit} color={producto.color} />
+      <Otros fit={producto.fit} color={producto.color} currentSlug={producto.slug.current} />
 
       {/* Modal de imagen ampliada */}
       <Dialog open={isModalOpen} onClose={toggleModal} className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-75">
