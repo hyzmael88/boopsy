@@ -13,6 +13,8 @@ export default function Producto({ producto }) {
   const [isZoomed, setIsZoomed] = useState(false);
   const [selectedImage, setSelectedImage] = useState(producto.imagenes[0].asset.url);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(true); // Estado para el loading
+
 
   // Abrir/Cerrar Modal
   const toggleModal = () => {
@@ -24,6 +26,12 @@ export default function Producto({ producto }) {
     setSelectedImage(image);
     setIsZoomed(false); // Reset zoom when changing image
   };
+
+    // Manejar el evento de carga de la imagen
+    const handleImageLoad = () => {
+      setIsLoading(false); // Ocultar el skeleton cuando la imagen esté cargada
+      console.log("Imagen cargada");
+    };
 
   const handleAddToCart = () => {
     if (!size) {
@@ -56,15 +64,23 @@ export default function Producto({ producto }) {
         {/* Imágenes del producto */}
         <div className="">
           <div className="relative overflow-hidden">
+          {isLoading && (
+              <div className="w-full h-[500px] bg-gray-200 animate-pulse"></div>
+            )}
+
             {/* Imagen principal con zoom */}
             <Image
+            
               src={selectedImage}
               alt={producto.nombre}
               width={1500}
               height={1500}
               className={`w-full h-auto transition-transform duration-300 ${
                 isZoomed ? "scale-150" : ""
-              } hover:cursor-zoom-in`}
+              } hover:cursor-zoom-in ${isLoading ? "hidden" : "block"}`}
+              priority={true}
+              onLoadingComplete={handleImageLoad}
+              lazyload={true}
               onMouseEnter={() => setIsZoomed(true)}
               onMouseLeave={() => setIsZoomed(false)}
               onClick={toggleModal}
