@@ -60,7 +60,7 @@ export const compraConfirmada = (packageLink) => `
 <body>
     <div class="container">
         <div class="header">
-            <img src="https://www.selvedgeshop.com/logo.svg" alt="Logo">
+            <img src="https://www.selvedgeshop.com/logo.png" alt="Logo">
         </div>
         <div class="content">
             <h2>Compra Confirmada</h2>
