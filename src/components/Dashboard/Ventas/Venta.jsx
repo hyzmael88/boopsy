@@ -80,20 +80,26 @@ useEffect(() => {
       setIsTrackingModalOpen(true);
     } else {
       sendEmail(newEstado);
-      updateVenta(venta._id, { ...venta, envio: { ...venta.envio, estadoPedido: newEstado } });
+      updateVenta(venta._id, { ...venta, estadoPedido: newEstado });
     }
   };
 
   const handleTrackingSubmit = (number) => {
     setTrackingNumber(number);
     sendEmail('enviado', number);  // Aquí pasamos el número de seguimiento
-    updateVenta(venta._id, { ...venta, envio: { ...venta.envio, estadoPedido: 'enviado', trackingNumber: number } });
+    // Actualizar el documento de la venta directamente
+    updateVenta(venta._id, {
+      ...venta,
+      estadoPedido: 'enviado',    // Actualizar el estado del pedido a "enviado"
+      trackingNumber: number      // Guardar el número de seguimiento
+    });
   };
 
   const sendEmail = (estado, trackingNumber = '') => {
     const templateParams = {
       cliente_correo: venta?.customer_email,
       estado,
+      total: venta.amount_total,
       tracking_number: trackingNumber,  // Incluir la guía de seguimiento
       facebook: "https://www.facebook.com/boopsy_jeans",
       instagram: "https://www.instagram.com/boopsy_jeans",

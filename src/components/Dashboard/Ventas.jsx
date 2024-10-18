@@ -95,13 +95,13 @@ function Ventas() {
           <Image
           width={25}
           height={40}
-          src="/assets/icons/izq.svg" alt="arrow" className="w-[25px] h-[40px]" />
+          src="/assets/iconos/flechab.svg" alt="arrow" className="w-[25px] h-[40px] rotate-180 " />
         </button>
         <button onClick={nextPage} className={currentPage < Math.ceil(totalItems / itemsPerPage) ? 'rounded-full bg-black w-[76px] h-[76px] flex items-center justify-center' : 'hidden'}>
           <Image
           width={25}
           height={40}
-          src="/assets/icons/der.svg" alt="arrow" className="w-[25px] h-[40px]" />
+          src="/assets/iconos/flechab.svg" alt="arrow" className="w-[25px] h-[40px]" />
         </button>
       </div>
     </>
