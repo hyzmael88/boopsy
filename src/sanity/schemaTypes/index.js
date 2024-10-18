@@ -9,5 +9,5 @@ import venta from "./venta";
 import cupones from "./cupones";
 
 export const schema = {
-  types: [producto, categoria, fabricante, fit, color, suscriptor, user, venta, cupones ],
+  types: [producto, categoria, fabricante, fit, color, suscriptor, user, venta ],
 };

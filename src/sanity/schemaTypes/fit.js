@@ -24,12 +24,6 @@ export default {
             type: 'image',
             description: 'Image of the fit style.',
         }
-        ,
-        {
-            name: 'guia',
-            title: 'Guia de Medidas',
-            type: 'image',
-            description: 'Tabla de medidas acorde al fit.',
-        }
+        
     ]
 }

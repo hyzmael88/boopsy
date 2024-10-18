@@ -60,6 +60,12 @@ export default {
       validation: Rule => Rule.required().min(0).error('El precio debe ser un número positivo.')
     },
     {
+      name: 'guia',
+      title: 'Guia de Medidas',
+      type: 'image',
+      description: 'Tabla de medidas acorde al fit.',
+  },
+    {
       name: 'precioDescuento',
       title: 'Precio con Descuento',
       type: 'number',
